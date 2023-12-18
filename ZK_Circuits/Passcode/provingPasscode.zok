@@ -1,0 +1,14 @@
+import "hashes/sha256/256bitPadded" as sha256;
+
+def main(private u32[8] password, u32[8] hashedPassword) -> bool {
+    u32[8] h = sha256(password);
+    assert(h[0] == hashedPassword[0]);
+    assert(h[1] == hashedPassword[1]);
+    assert(h[2] == hashedPassword[2]);
+    assert(h[3] == hashedPassword[3]);
+    assert(h[4] == hashedPassword[4]);
+    assert(h[5] == hashedPassword[5]);
+    assert(h[6] == hashedPassword[6]);
+    assert(h[7] == hashedPassword[7]);
+    return true;
+}
