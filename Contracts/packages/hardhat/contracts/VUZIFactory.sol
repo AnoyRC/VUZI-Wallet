@@ -9,8 +9,9 @@ import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import "@openzeppelin/contracts/metatx/ERC2771Context.sol";
 
 import "./verifier/passcodeVerifier.sol";
+import "./verifier/recoveryVerifier.sol";
 
-contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier {
+contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryVerifier {
    
    VUZI public immutable accountImplementation;
 
@@ -41,7 +42,7 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier {
             )));
     }
 
-    function executeVUZITx(string memory name, Proof memory proof ,address dest, uint256 value, bytes calldata func) external isValidVuzi(name) {
+    function executeVUZITx(string memory name, PasscodeProof memory proof ,address dest, uint256 value, bytes calldata func) external isValidVuzi(name) {
         VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
 
         uint256[3] memory input = [
@@ -50,13 +51,13 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier {
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 
-        bool success = verifyTx(proof, input);
+        bool success = passcodeVerifyTx(proof, input);
         require(success, "VUZI: Invalid Proof");
 
         vuzi.execute(dest, value, func);
     }
 
-    function verifyVUZIPassword(string memory name, Proof memory proof) external view isValidVuzi(name) returns (bool) {
+    function verifyVUZIPassword(string memory name, PasscodeProof memory proof) external view isValidVuzi(name) returns (bool) {
         VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
 
         uint256[3] memory input = [
@@ -65,12 +66,12 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier {
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 
-        bool success = verifyTx(proof, input);
+        bool success = passcodeVerifyTx(proof, input);
         require(success, "VUZI: Invalid Proof");
         return true;
     }
 
-    function executeBatchVUZITx(string memory name, Proof memory proof, address[] calldata dest, uint256[] calldata value, bytes[] calldata func) external isValidVuzi(name) {
+    function executeBatchVUZITx(string memory name, PasscodeProof memory proof, address[] calldata dest, uint256[] calldata value, bytes[] calldata func) external isValidVuzi(name) {
         VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
 
         uint256[3] memory input = [
@@ -79,9 +80,27 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier {
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 
-        bool success = verifyTx(proof, input);
+        bool success = passcodeVerifyTx(proof, input);
         require(success, "VUZI: Invalid Proof");
 
         vuzi.executeBatch(dest, value, func);
+    }
+
+    function changePasscode(string memory name, Proof memory proof, uint256[2] memory _passwordHash) external isValidVuzi(name) {
+        VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
+
+        uint256[5] memory input = [
+            vuzi.recoveryHashes(0),
+            vuzi.recoveryHashes(1),
+            vuzi.recoveryHashes(2),
+            vuzi.recoveryHashes(3),
+            0x0000000000000000000000000000000000000000000000000000000000000001
+        ];
+
+        bool success = recoveryVerifyTx(proof, input);
+
+        require(success, "VUZI: Invalid Proof");
+
+        vuzi.changePassword(_passwordHash);
     }
 }

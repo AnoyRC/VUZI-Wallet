@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     VUZIFactory: {
-      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
       abi: [
         {
           inputs: [
@@ -55,6 +55,82 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct Pairing.G1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct Pairing.G2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct Pairing.G1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct RecoveryVerifier.Proof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256[2]",
+              name: "_passwordHash",
+              type: "uint256[2]",
+            },
+          ],
+          name: "changePasscode",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
@@ -113,7 +189,7 @@ const deployedContracts = {
                       type: "uint256",
                     },
                   ],
-                  internalType: "struct Pairing.G1Point",
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
                   name: "a",
                   type: "tuple",
                 },
@@ -130,7 +206,7 @@ const deployedContracts = {
                       type: "uint256[2]",
                     },
                   ],
-                  internalType: "struct Pairing.G2Point",
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
                   name: "b",
                   type: "tuple",
                 },
@@ -147,12 +223,12 @@ const deployedContracts = {
                       type: "uint256",
                     },
                   ],
-                  internalType: "struct Pairing.G1Point",
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
                   name: "c",
                   type: "tuple",
                 },
               ],
-              internalType: "struct PasscodeVerifier.Proof",
+              internalType: "struct PasscodeVerifier.PasscodeProof",
               name: "proof",
               type: "tuple",
             },
@@ -199,7 +275,7 @@ const deployedContracts = {
                       type: "uint256",
                     },
                   ],
-                  internalType: "struct Pairing.G1Point",
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
                   name: "a",
                   type: "tuple",
                 },
@@ -216,7 +292,7 @@ const deployedContracts = {
                       type: "uint256[2]",
                     },
                   ],
-                  internalType: "struct Pairing.G2Point",
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
                   name: "b",
                   type: "tuple",
                 },
@@ -233,12 +309,12 @@ const deployedContracts = {
                       type: "uint256",
                     },
                   ],
-                  internalType: "struct Pairing.G1Point",
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
                   name: "c",
                   type: "tuple",
                 },
               ],
-              internalType: "struct PasscodeVerifier.Proof",
+              internalType: "struct PasscodeVerifier.PasscodeProof",
               name: "proof",
               type: "tuple",
             },
@@ -364,7 +440,7 @@ const deployedContracts = {
                       type: "uint256",
                     },
                   ],
-                  internalType: "struct Pairing.G1Point",
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
                   name: "a",
                   type: "tuple",
                 },
@@ -381,7 +457,7 @@ const deployedContracts = {
                       type: "uint256[2]",
                     },
                   ],
-                  internalType: "struct Pairing.G2Point",
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
                   name: "b",
                   type: "tuple",
                 },
@@ -398,12 +474,12 @@ const deployedContracts = {
                       type: "uint256",
                     },
                   ],
-                  internalType: "struct Pairing.G1Point",
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
                   name: "c",
                   type: "tuple",
                 },
               ],
-              internalType: "struct PasscodeVerifier.Proof",
+              internalType: "struct PasscodeVerifier.PasscodeProof",
               name: "proof",
               type: "tuple",
             },
@@ -413,7 +489,7 @@ const deployedContracts = {
               type: "uint256[3]",
             },
           ],
-          name: "verifyTx",
+          name: "passcodeVerifyTx",
           outputs: [
             {
               internalType: "bool",
@@ -426,11 +502,6 @@ const deployedContracts = {
         },
         {
           inputs: [
-            {
-              internalType: "string",
-              name: "name",
-              type: "string",
-            },
             {
               components: [
                 {
@@ -485,7 +556,89 @@ const deployedContracts = {
                   type: "tuple",
                 },
               ],
-              internalType: "struct PasscodeVerifier.Proof",
+              internalType: "struct RecoveryVerifier.Proof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256[5]",
+              name: "input",
+              type: "uint256[5]",
+            },
+          ],
+          name: "recoveryVerifyTx",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "r",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct PasscodeVerifier.PasscodeProof",
               name: "proof",
               type: "tuple",
             },

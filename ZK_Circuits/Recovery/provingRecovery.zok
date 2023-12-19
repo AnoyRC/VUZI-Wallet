@@ -1,8 +1,11 @@
 import "hashes/sha256/256bitPadded" as sha256;
+import "utils/pack/u32/pack256" as pack256;
 
-def main(private u32[8] a, u32[4][8] recoveryHashes ) -> bool {
-    u32[8] h = sha256(a);
 
-    assert(h == recoveryHashes[0] || h == recoveryHashes[1] || h == recoveryHashes[2] || h == recoveryHashes[3]);
+def main(private u32[8] recoveryCode, field[4] recoveryHashes ) -> bool {
+    u32[8] h = sha256(recoveryCode);
+    field p = pack256(h);
+
+    assert(p == recoveryHashes[0] || p == recoveryHashes[1] || p == recoveryHashes[2] || p == recoveryHashes[3]);
     return true;
 }
