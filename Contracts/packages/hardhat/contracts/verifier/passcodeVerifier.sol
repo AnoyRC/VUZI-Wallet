@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: MIT
 // This file is MIT Licensed.
 //
 // Copyright 2017 Christian Reitwiessner
@@ -143,7 +144,7 @@ library Pairing {
     }
 }
 
-contract Verifier {
+contract PasscodeVerifier {
     using Pairing for *;
     struct VerifyingKey {
         Pairing.G1Point alpha;

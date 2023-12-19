@@ -1,14 +1,12 @@
 import "hashes/sha256/256bitPadded" as sha256;
+import "utils/pack/u32/pack128" as pack128;
 
-def main(private u32[8] password, u32[8] hashedPassword) -> bool {
+def main(private u32[8] password, field[2] hashedPassword) -> bool {
     u32[8] h = sha256(password);
-    assert(h[0] == hashedPassword[0]);
-    assert(h[1] == hashedPassword[1]);
-    assert(h[2] == hashedPassword[2]);
-    assert(h[3] == hashedPassword[3]);
-    assert(h[4] == hashedPassword[4]);
-    assert(h[5] == hashedPassword[5]);
-    assert(h[6] == hashedPassword[6]);
-    assert(h[7] == hashedPassword[7]);
+    field[2] res = [pack128(h[0..4]), pack128(h[4..8])];
+
+    assert(hashedPassword[0] == res[0]);
+    assert(hashedPassword[1] == res[1]);
+
     return true;
 }

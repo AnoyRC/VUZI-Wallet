@@ -60,9 +60,9 @@
         "type": "tuple"
       },
       {
-        "internalType": "uint256[9]",
+        "internalType": "uint256[3]",
         "name": "input",
-        "type": "uint256[9]"
+        "type": "uint256[3]"
       }
     ],
     "name": "verifyTx",
