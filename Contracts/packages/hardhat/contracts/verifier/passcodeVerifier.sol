@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: MIT
 // This file is MIT Licensed.
 //
 // Copyright 2017 Christian Reitwiessner
@@ -158,16 +159,16 @@ contract PasscodeVerifier {
         PasscodePairing.PasscodeG1Point c;
     }
     function passcodeVerifyingKey() pure internal returns (PasscodeVerifyingKey memory vk) {
-        vk.alpha = PasscodePairing.PasscodeG1Point(uint256(0x2c385ebcac0567f26df57b87c68552c18130c53bdce42651c2e13389d38f9564), uint256(0x0b6a57d5f4b055c343c68a51ad287bb9f577814b02f8a4381ebd53b28627c378));
-        vk.beta = PasscodePairing.PasscodeG2Point([uint256(0x1cb824bd97e4c1f8709e0f8ebbb33fa7e81ff4cc4f25591126aa30fdc56135d9), uint256(0x26cbd2cd19c4ac3eafe19969e51c906b6de39ac3cab046df451ca1a8efe12651)], [uint256(0x020c133df4c92c391499d682c031c1f4dc9f3eea9e9cf8c5ee7e7ef7fa7cc604), uint256(0x1b2e17a17813ffb4063ece1ace1a43e5428c6525cfdbc3e293007ce756a69776)]);
-        vk.gamma = PasscodePairing.PasscodeG2Point([uint256(0x2295750ac8990a4a7e3c16e1a3c1a12a1d2b82a28dfdf9a4ea22632652da5bef), uint256(0x2759a01c449d390f09e57db50f69579dbbd9fca202f83bd442d24843396be36b)], [uint256(0x022b448be6ef16046ddf94a4c6f78ad99cc52586765ef8810fc660650448ee59), uint256(0x1d8c4fa3f8096e92eba8d54ce2aa6dc395c9a8e9238a2f55395c6fd8d85420ed)]);
-        vk.delta = PasscodePairing.PasscodeG2Point([uint256(0x13d89a2cc2c1ca15483ed6802588076ed17f69ebc0137c166ffcfed38ec5246a), uint256(0x20bc29af2bc4462169070552d03f2708ce2ca110caccd6258d2ba608dad88152)], [uint256(0x2ff30bec11b5474fcabe04c76f559a320e192bd864cc71366613799f7468aa79), uint256(0x1fe745d40d3bdb06ec3dba1ce28df2489be6f2fb19a1bf991401c008f86b1f83)]);
+        vk.alpha = PasscodePairing.PasscodeG1Point(uint256(0x23e367a548451ba8f0776ea34cb2e183e7ff6c6988682010803584fe97989de3), uint256(0x1db88115b766571ac0fd02d94e2b094513ed1e95f13c9f590adfa8903e2e49c9));
+        vk.beta = PasscodePairing.PasscodeG2Point([uint256(0x10c45a5d74ae9fb066b782e017ea188faa796b66bd5aabc9b72e70559b6e2da0), uint256(0x304ba133aac92d0a41e8fa67c88eb43c5bfc86e41a8649178921796159ac5f84)], [uint256(0x0e76ba8b4dc01306f5a429c3c1f66c70caee2deb3dd0ed5a7313155de61a91a2), uint256(0x094c4feae519402514e58f74800aeb505781c6c9cf0135a0dba601925a983d2a)]);
+        vk.gamma = PasscodePairing.PasscodeG2Point([uint256(0x1901b0ee81098c43755ebca7d09263ad84b82cf5e5fe2bafc61c9032fe5a130f), uint256(0x2ec2839e502d1e2529158c752236d0586ce07f74d6abed7f9bff5919fc7564f0)], [uint256(0x22d4891f7a1ce4231b029fd6aa673cfdd37ff46700686ad7db8f9d542f8ba24a), uint256(0x27a46f9c4f6ad2f5939a4cbabf57ab1a1c0ae5d30f7441da9e642c2871bc6f99)]);
+        vk.delta = PasscodePairing.PasscodeG2Point([uint256(0x0b9732681b130fa2ca6cab03766934f4a2d2befa1e70a0e97f0a03222dc72140), uint256(0x06617b5957fdebf76b0ec13b0d7dbcefe71d6d107cbf49b27fd96f2e44d77306)], [uint256(0x2a188219deeaea1ecc3b4b27b26dfc4e0b6d426c440f0f5c31c24a10a094c796), uint256(0x14cd79c232c7c97a01e88ea2519f36f97655c706523fa1465a02764d0b772348)]);
         vk.gamma_abc = new PasscodePairing.PasscodeG1Point[](5);
-        vk.gamma_abc[0] = PasscodePairing.PasscodeG1Point(uint256(0x18db21e70c9bb67a53c8dead3675197cd1a6854ae36e776571f11ab5e01203a6), uint256(0x0346c6d56a8e4bbe035fd2b91a0d5d74ff5fe609f990d594fce93f0fbbd02cb9));
-        vk.gamma_abc[1] = PasscodePairing.PasscodeG1Point(uint256(0x0e89960ae128ea7dcdbf78ebe07810238f5c0f99a42ace19fe780242045e9ad8), uint256(0x059bb1cdd7c0a76d98a1190fd7b409329eeabbfaa1503d245405a9e68329e5bf));
-        vk.gamma_abc[2] = PasscodePairing.PasscodeG1Point(uint256(0x23a3053858846565501a46e76c0a0a3166f0ae9e123ff84f5198a012dacc0eab), uint256(0x16fbcc46410ce2bc5168efa425d41329e6336b040b28af75c76a22aff294ef25));
-        vk.gamma_abc[3] = PasscodePairing.PasscodeG1Point(uint256(0x13b247270a94c5aa6a80602dc0e23e6e7c3f6841813fd39351cbe0a902b8318a), uint256(0x17c855e6b5aa516b0026c6961706254dde555706dc951ed296ae40522e12513d));
-        vk.gamma_abc[4] = PasscodePairing.PasscodeG1Point(uint256(0x0b5c753425e3a7138e1ba3a6a131ab1017f55636c327a7c7454ed6f2bda2adb2), uint256(0x3055a3cabfd7838953310d72f03c272c7105eead7d57332f1bffde23b96358e9));
+        vk.gamma_abc[0] = PasscodePairing.PasscodeG1Point(uint256(0x2585c36cb0a0257f94d3489a8e6047f90a5f25ed8ba1751faf735dad6fbec603), uint256(0x17f6e54b6ca89c931a38ebdacd414f9079ef9c56a6e23dd4449d4475a33e0f34));
+        vk.gamma_abc[1] = PasscodePairing.PasscodeG1Point(uint256(0x06a7bc23475b40925e13d75acaaec5f57c5791022beb7f6ae14deeaa0eb6ce41), uint256(0x137aff9ae040636e1b517f43a0518df99498a1805388e61fad51b3afed62e62a));
+        vk.gamma_abc[2] = PasscodePairing.PasscodeG1Point(uint256(0x00411e26ef0b555702ed65c6bd325b9e8058623c14d537a077e46e30a04e4ad6), uint256(0x2983114d5602441f7e0bdca4a9bea03229d492b251cdcab11f899b736470b502));
+        vk.gamma_abc[3] = PasscodePairing.PasscodeG1Point(uint256(0x0ab7795a11fd6ac2a50f54f8a0e5e74641e77492142dc247bf6b743757ccd362), uint256(0x2ffcff97802bf7fd38b116c23847d02fed77fd7123402f2bb65134c09bf4aa93));
+        vk.gamma_abc[4] = PasscodePairing.PasscodeG1Point(uint256(0x2a5961a64c9a0ccc1e545121e6fb7c1bce5ef2192ef87ecf4dec455366650896), uint256(0x1a44d49c2f30e3f24eee73bb7b0551888fa9a48747fc10fdf44a9d5a9a4bc12e));
     }
     function passcodeVerify(uint[] memory input, PasscodeProof memory proof) internal view returns (uint) {
         uint256 snark_scalar_field = 21888242871839275222246405745257275088548364400416034343698204186575808495617;

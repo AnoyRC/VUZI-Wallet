@@ -1,0 +1,35 @@
+{
+  "inputs": [
+    {
+      "name": "password",
+      "public": false,
+      "type": "array",
+      "components": {
+        "size": 8,
+        "type": "u32"
+      }
+    },
+    {
+      "name": "uncheckedNonce",
+      "public": false,
+      "type": "field"
+    },
+    {
+      "name": "hashedPassword",
+      "public": true,
+      "type": "array",
+      "components": {
+        "size": 2,
+        "type": "field"
+      }
+    },
+    {
+      "name": "nonce",
+      "public": true,
+      "type": "u32"
+    }
+  ],
+  "output": {
+    "type": "bool"
+  }
+}

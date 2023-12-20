@@ -19,7 +19,12 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
         accountImplementation = new VUZI();
     }
 
-    function createAccount(string memory name, uint256[2] memory _passwordHash, uint256[4] memory _recoveryHashes, uint256 salt) public returns (VUZI ret) {
+    modifier onlyTrustedForwarder() {
+        require(isTrustedForwarder(msg.sender), "VUZI: caller is not the trusted forwarder");
+        _;
+    }
+
+    function createAccount(string memory name, uint256[2] memory _passwordHash, uint256[4] memory _recoveryHashes, uint256 salt) onlyTrustedForwarder public returns (VUZI ret) {
         address addr = getAddress(name, _passwordHash, _recoveryHashes , salt);
         uint codeSize = addr.code.length;
         if (codeSize > 0) {
@@ -42,7 +47,7 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
             )));
     }
 
-    function executeVUZITx(string memory name, PasscodeProof memory proof ,address dest, uint256 value, bytes calldata func) external isValidVuzi(name) {
+    function executeVUZITx(string memory name, PasscodeProof memory proof ,address dest, uint256 value, bytes calldata func) onlyTrustedForwarder external isValidVuzi(name) {
         VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
         uint nonce = vuzi._useNonce();
@@ -60,7 +65,7 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
         vuzi.execute(dest, value, func);
     }
 
-    function verifyVUZIPassword(string memory name, PasscodeProof memory proof) external view isValidVuzi(name) returns (bool) {
+    function verifyVUZIPassword(string memory name, PasscodeProof memory proof) onlyTrustedForwarder external view isValidVuzi(name) returns (bool) {
         VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
         uint nonce = vuzi.getNonce();
@@ -77,7 +82,7 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
         return true;
     }
 
-    function executeBatchVUZITx(string memory name, PasscodeProof memory proof, address[] calldata dest, uint256[] calldata value, bytes[] calldata func) external isValidVuzi(name) {
+    function executeBatchVUZITx(string memory name, PasscodeProof memory proof, address[] calldata dest, uint256[] calldata value, bytes[] calldata func) onlyTrustedForwarder external isValidVuzi(name) {
         VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
         uint nonce = vuzi._useNonce();
@@ -95,7 +100,7 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
         vuzi.executeBatch(dest, value, func);
     }
 
-    function changePasscode(string memory name, Proof memory proof, uint256[2] memory _passwordHash) external isValidVuzi(name) {
+    function changePasscode(string memory name, Proof memory proof, uint256[2] memory _passwordHash) onlyTrustedForwarder external isValidVuzi(name) {
         VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
         uint nonce = vuzi._useNonce();
