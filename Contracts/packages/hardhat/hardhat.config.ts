@@ -26,7 +26,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "victionTestnet",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -128,6 +128,10 @@ const config: HardhatUserConfig = {
     },
     pgnTestnet: {
       url: "https://sepolia.publicgoods.network",
+      accounts: [deployerPrivateKey],
+    },
+    victionTestnet: {
+      url: "https://rpc-testnet.viction.xyz",
       accounts: [deployerPrivateKey],
     },
   },

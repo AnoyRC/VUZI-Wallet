@@ -5,6 +5,1029 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
+  89: {
+    VUZIFactory: {
+      address: "0xcbd8EF2d15E11fC65793e693d7D11e918fAfa5D6",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_trustedForwarder",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          name: "VUZINameToDetails",
+          outputs: [
+            {
+              internalType: "address",
+              name: "walletAddress",
+              type: "address",
+            },
+            {
+              internalType: "bool",
+              name: "isUsed",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "accountImplementation",
+          outputs: [
+            {
+              internalType: "contract VUZI",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct Pairing.G1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct Pairing.G2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct Pairing.G1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct RecoveryVerifier.Proof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256[2]",
+              name: "_passwordHash",
+              type: "uint256[2]",
+            },
+          ],
+          name: "changePasscode",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "uint256[2]",
+              name: "_passwordHash",
+              type: "uint256[2]",
+            },
+            {
+              internalType: "uint256[4]",
+              name: "_recoveryHashes",
+              type: "uint256[4]",
+            },
+            {
+              internalType: "uint256",
+              name: "salt",
+              type: "uint256",
+            },
+          ],
+          name: "createAccount",
+          outputs: [
+            {
+              internalType: "contract VUZI",
+              name: "ret",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct PasscodeVerifier.PasscodeProof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "address[]",
+              name: "dest",
+              type: "address[]",
+            },
+            {
+              internalType: "uint256[]",
+              name: "value",
+              type: "uint256[]",
+            },
+            {
+              internalType: "bytes[]",
+              name: "func",
+              type: "bytes[]",
+            },
+          ],
+          name: "executeBatchVUZITx",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct PasscodeVerifier.PasscodeProof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "address",
+              name: "dest",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes",
+              name: "func",
+              type: "bytes",
+            },
+          ],
+          name: "executeVUZITx",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "uint256[2]",
+              name: "_passwordHash",
+              type: "uint256[2]",
+            },
+            {
+              internalType: "uint256[4]",
+              name: "_recoveryHashes",
+              type: "uint256[4]",
+            },
+            {
+              internalType: "uint256",
+              name: "salt",
+              type: "uint256",
+            },
+          ],
+          name: "getAddress",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+          ],
+          name: "getVuzi",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "walletAddress",
+                  type: "address",
+                },
+                {
+                  internalType: "bool",
+                  name: "isUsed",
+                  type: "bool",
+                },
+              ],
+              internalType: "struct VUZIStorage.VUZIDetails",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "forwarder",
+              type: "address",
+            },
+          ],
+          name: "isTrustedForwarder",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct PasscodeVerifier.PasscodeProof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256[4]",
+              name: "input",
+              type: "uint256[4]",
+            },
+          ],
+          name: "passcodeVerifyTx",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "r",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct Pairing.G1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct Pairing.G2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct Pairing.G1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct RecoveryVerifier.Proof",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256[6]",
+              name: "input",
+              type: "uint256[6]",
+            },
+          ],
+          name: "recoveryVerifyTx",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "r",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              components: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "a",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256[2]",
+                      name: "X",
+                      type: "uint256[2]",
+                    },
+                    {
+                      internalType: "uint256[2]",
+                      name: "Y",
+                      type: "uint256[2]",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG2Point",
+                  name: "b",
+                  type: "tuple",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "X",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "Y",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct PasscodePairing.PasscodeG1Point",
+                  name: "c",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct PasscodeVerifier.PasscodeProof",
+              name: "proof",
+              type: "tuple",
+            },
+          ],
+          name: "verifyVUZIPassword",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        VUZINameToDetails: "contracts/VUZIStorage.sol",
+        getVuzi: "contracts/VUZIStorage.sol",
+        isTrustedForwarder: "@openzeppelin/contracts/metatx/ERC2771Context.sol",
+        passcodeVerifyTx: "contracts/verifier/PasscodeVerifier.sol",
+        recoveryVerifyTx: "contracts/verifier/RecoveryVerifier.sol",
+      },
+    },
+    VUZIForwarder: {
+      address: "0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint48",
+              name: "deadline",
+              type: "uint48",
+            },
+          ],
+          name: "ERC2771ForwarderExpiredRequest",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "signer",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+          ],
+          name: "ERC2771ForwarderInvalidSigner",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "requestedValue",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "msgValue",
+              type: "uint256",
+            },
+          ],
+          name: "ERC2771ForwarderMismatchedValue",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "target",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "forwarder",
+              type: "address",
+            },
+          ],
+          name: "ERC2771UntrustfulTarget",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "currentNonce",
+              type: "uint256",
+            },
+          ],
+          name: "InvalidAccountNonce",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "signer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "nonce",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "bool",
+              name: "success",
+              type: "bool",
+            },
+          ],
+          name: "ExecutedForwardRequest",
+          type: "event",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "from",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "to",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "gas",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint48",
+                  name: "deadline",
+                  type: "uint48",
+                },
+                {
+                  internalType: "bytes",
+                  name: "data",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "signature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct VUZIForwarder.ForwardRequestData",
+              name: "request",
+              type: "tuple",
+            },
+          ],
+          name: "execute",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "from",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "to",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "gas",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint48",
+                  name: "deadline",
+                  type: "uint48",
+                },
+                {
+                  internalType: "bytes",
+                  name: "data",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "signature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct VUZIForwarder.ForwardRequestData[]",
+              name: "requests",
+              type: "tuple[]",
+            },
+            {
+              internalType: "address payable",
+              name: "refundReceiver",
+              type: "address",
+            },
+          ],
+          name: "executeBatch",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+          ],
+          name: "nonces",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "from",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "to",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "gas",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint48",
+                  name: "deadline",
+                  type: "uint48",
+                },
+                {
+                  internalType: "bytes",
+                  name: "data",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "signature",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct VUZIForwarder.ForwardRequestData",
+              name: "request",
+              type: "tuple",
+            },
+          ],
+          name: "verify",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        eip712Domain: "@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+      },
+    },
+  },
   31337: {
     VUZIFactory: {
       address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
