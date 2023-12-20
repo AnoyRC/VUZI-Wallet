@@ -8,8 +8,8 @@ import "@openzeppelin/contracts/utils/Create2.sol";
 import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import "@openzeppelin/contracts/metatx/ERC2771Context.sol";
 
-import "./verifier/passcodeVerifier.sol";
-import "./verifier/recoveryVerifier.sol";
+import "./verifier/PasscodeVerifier.sol";
+import "./verifier/RecoveryVerifier.sol";
 
 contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryVerifier {
    
@@ -43,11 +43,14 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
     }
 
     function executeVUZITx(string memory name, PasscodeProof memory proof ,address dest, uint256 value, bytes calldata func) external isValidVuzi(name) {
-        VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
+        VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
-        uint256[3] memory input = [
+        uint nonce = vuzi._useNonce();
+
+        uint256[4] memory input = [
             vuzi.passwordHash(0),
             vuzi.passwordHash(1),
+            nonce,
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 
@@ -58,11 +61,14 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
     }
 
     function verifyVUZIPassword(string memory name, PasscodeProof memory proof) external view isValidVuzi(name) returns (bool) {
-        VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
+        VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
-        uint256[3] memory input = [
+        uint nonce = vuzi.getNonce();
+
+        uint256[4] memory input = [
             vuzi.passwordHash(0),
             vuzi.passwordHash(1),
+            nonce,
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 
@@ -72,11 +78,14 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
     }
 
     function executeBatchVUZITx(string memory name, PasscodeProof memory proof, address[] calldata dest, uint256[] calldata value, bytes[] calldata func) external isValidVuzi(name) {
-        VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
+        VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
-        uint256[3] memory input = [
+        uint nonce = vuzi._useNonce();
+
+        uint256[4] memory input = [
             vuzi.passwordHash(0),
             vuzi.passwordHash(1),
+            nonce,
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 
@@ -87,13 +96,16 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
     }
 
     function changePasscode(string memory name, Proof memory proof, uint256[2] memory _passwordHash) external isValidVuzi(name) {
-        VUZI vuzi = VUZI(address(VUZINameToDetails[name].walletAddress));
+        VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
-        uint256[5] memory input = [
+        uint nonce = vuzi._useNonce();
+
+        uint256[6] memory input = [
             vuzi.recoveryHashes(0),
             vuzi.recoveryHashes(1),
             vuzi.recoveryHashes(2),
             vuzi.recoveryHashes(3),
+            nonce,
             0x0000000000000000000000000000000000000000000000000000000000000001
         ];
 

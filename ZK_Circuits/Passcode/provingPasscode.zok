@@ -1,12 +1,14 @@
 import "hashes/sha256/256bitPadded" as sha256;
 import "utils/pack/u32/pack128" as pack128;
+import "utils/casts/u32_to_field" as u32_to_field;
 
-def main(private u32[8] password, field[2] hashedPassword) -> bool {
+def main(private u32[8] password, private field uncheckedNonce, field[2] hashedPassword, u32 nonce) -> bool {
     u32[8] h = sha256(password);
     field[2] res = [pack128(h[0..4]), pack128(h[4..8])];
 
     assert(hashedPassword[0] == res[0]);
     assert(hashedPassword[1] == res[1]);
+    assert(u32_to_field(nonce) == uncheckedNonce);
 
     return true;
 }

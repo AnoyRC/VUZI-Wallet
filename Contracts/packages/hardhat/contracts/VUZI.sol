@@ -15,12 +15,26 @@ contract VUZI is TokenCallbackHandler, Initializable {
 
 	uint256[4] public recoveryHashes;
 
+    uint256 private nonce;
+
 	modifier onlyVUZIFactory() {
 		require(msg.sender == VUZI_FACTORY, "VUZI: Only VUZI Factory");
 		_;
 	}
 
-	 function initialize(address _vuziFactory, string memory name, uint256[2] memory _passwordHash, uint256[4] memory _recoveryHashes) public virtual initializer {
+    error InvalidAccountNonce(uint256 currentNonce);
+
+    function getNonce() public view returns (uint256) {
+        return nonce;
+    }
+
+    function _useNonce() external onlyVUZIFactory returns (uint256) {
+        unchecked {
+            return nonce++;
+        }
+    }
+
+	function initialize(address _vuziFactory, string memory name, uint256[2] memory _passwordHash, uint256[4] memory _recoveryHashes) public virtual initializer {
         _initialize(_vuziFactory, name, _passwordHash, _recoveryHashes);
     }
 
@@ -61,4 +75,8 @@ contract VUZI is TokenCallbackHandler, Initializable {
 	function changePassword(uint256[2] memory _passwordHash) external onlyVUZIFactory {
 		passwordHash = _passwordHash;
 	}
+
+    receive() external payable {}
+
+    fallback() external payable {}
 }

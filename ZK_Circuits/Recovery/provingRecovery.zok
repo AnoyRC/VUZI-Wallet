@@ -1,11 +1,12 @@
 import "hashes/sha256/256bitPadded" as sha256;
 import "utils/pack/u32/pack256" as pack256;
+import "utils/casts/u32_to_field" as u32_to_field;
 
-
-def main(private u32[8] recoveryCode, field[4] recoveryHashes ) -> bool {
+def main(private u32[8] recoveryCode, private field uncheckedNonce, field[4] recoveryHashes, u32 nonce ) -> bool {
     u32[8] h = sha256(recoveryCode);
     field p = pack256(h);
 
     assert(p == recoveryHashes[0] || p == recoveryHashes[1] || p == recoveryHashes[2] || p == recoveryHashes[3]);
+    assert(u32_to_field(nonce) == uncheckedNonce);
     return true;
 }
