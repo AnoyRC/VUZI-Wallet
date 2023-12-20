@@ -79,7 +79,7 @@ contract VUZIForwarder is EIP712, Nonces {
      */
     error ERC2771ForwarderInvalidSigner(address signer, address from);
 
-    /**
+    /** 
      * @dev The `requestedValue` doesn't match with the available `msgValue`.
      */
     error ERC2771ForwarderMismatchedValue(uint256 requestedValue, uint256 msgValue);
