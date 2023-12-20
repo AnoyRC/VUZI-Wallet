@@ -65,7 +65,7 @@ contract VUZIFactory is VUZIStorage, ERC2771Context, PasscodeVerifier, RecoveryV
         vuzi.execute(dest, value, func);
     }
 
-    function verifyVUZIPassword(string memory name, PasscodeProof memory proof) onlyTrustedForwarder external view isValidVuzi(name) returns (bool) {
+    function verifyVUZIPassword(string memory name, PasscodeProof memory proof) external view isValidVuzi(name) returns (bool) {
         VUZI vuzi = VUZI(payable(address(VUZINameToDetails[name].walletAddress)));
 
         uint nonce = vuzi.getNonce();
