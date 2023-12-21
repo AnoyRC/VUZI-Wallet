@@ -26,7 +26,19 @@ router.post("/", async (req, res) => {
   const contract = new ethers.Contract(relayerAddress, abi, wallet);
 
   try {
-    const tx = await contract.connect(wallet).execute(forwardRequest);
+    const data = contract.interface.encodeFunctionData("execute", [
+      forwardRequest,
+    ]);
+
+    const unSignedTx = {
+      to: relayerAddress,
+      data,
+      value: 0,
+      gasLimit: 1000000,
+    };
+
+    const tx = await wallet.sendTransaction(unSignedTx);
+
     const receipt = await tx.wait();
 
     res.json({ success: true, receipt });
