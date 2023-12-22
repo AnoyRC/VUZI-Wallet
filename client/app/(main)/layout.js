@@ -3,7 +3,7 @@ import Title from "@/components/layout/main/Title";
 
 export const metadata = {
   title: "VUZI",
-  description: "Wallet that your grandma approves",
+  description: "The Wallet that your grandma approves",
 };
 
 export default function LandingLayout({ children }) {

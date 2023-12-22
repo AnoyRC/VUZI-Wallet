@@ -1,11 +1,23 @@
+"use client";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Background() {
+  const pathName = usePathname();
   return (
     <div className="absolute top-0 left-0 w-full h-full z-0">
       <div className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4">
         <Image
-          src="/images/backgrounds/main.png"
+          src={`/images/backgrounds/${(() => {
+            switch (pathName) {
+              case "/":
+                return "main";
+              case "/home":
+                return "home";
+              default:
+                return "default";
+            }
+          })()}.png`}
           alt="Background"
           width={800}
           height={1000}
