@@ -14,6 +14,8 @@ export default function Background() {
                 return "main";
               case "/home":
                 return "home";
+              case "/wallet":
+                return "wallet";
               default:
                 return "default";
             }

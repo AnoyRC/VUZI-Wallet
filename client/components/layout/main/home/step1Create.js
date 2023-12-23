@@ -45,6 +45,7 @@ export default function Step1Create() {
         onClick={() => {
           dispatch(setStep(2));
         }}
+        disabled={password.length === 0 || !password}
       >
         Continue
       </Button>

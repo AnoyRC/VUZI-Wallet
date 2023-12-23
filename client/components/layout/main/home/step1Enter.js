@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { setName } from "@/redux/slice/walletSlice";
+import { useRouter } from "next/navigation";
 
 const gotu = Gotu({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function Step1Enter() {
   const { verifyPassword } = useReadContract();
   const isLoading = useSelector((state) => state.home.isLoading);
   const [verified, setVerified] = useState(false);
+  const router = useRouter();
 
   const handleVerifyPassword = async () => {
     dispatch(setIsLoading(true));
@@ -77,6 +79,7 @@ export default function Step1Enter() {
               if (isLoading) return;
               handleVerifyPassword();
             }}
+            disabled={password.length === 8 || !password}
           >
             {isLoading && (
               <Loader2 className="animate-spin text-black" size={27.9} />
@@ -115,7 +118,7 @@ export default function Step1Enter() {
                 dispatch(setPassword(""));
                 dispatch(setWalletAddress(""));
                 dispatch(setStep(0));
-                // Go To Dashboard
+                router.push("/wallet");
               }}
             >
               <Image

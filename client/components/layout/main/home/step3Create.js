@@ -13,6 +13,7 @@ import {
   setWalletAddress,
 } from "@/redux/slice/homeSlice";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const gotu = Gotu({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function Step3Create() {
   const password = useSelector((state) => state.home.password);
   const name = useSelector((state) => state.home.name);
   const walletAddress = useSelector((state) => state.home.walletAddress);
+  const router = useRouter();
 
   return (
     <div className="relative">
@@ -45,7 +47,7 @@ export default function Step3Create() {
           dispatch(setPassword(""));
           dispatch(setWalletAddress(""));
           dispatch(setStep(0));
-          // Go To Dashboard
+          router.push("/wallet");
         }}
       >
         <Image src="/logo.svg" alt="Logo" width={50} height={50} className="" />

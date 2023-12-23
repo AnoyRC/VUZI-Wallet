@@ -13,6 +13,9 @@ export default function Title() {
       {pathName === "/home" && (
         <h1 className="text-3xl font-semibold text-black/80">HOME</h1>
       )}
+      {pathName === "/wallet" && (
+        <Image src="/logo.svg" alt="Logo" width={60} height={60} />
+      )}
     </div>
   );
 }
