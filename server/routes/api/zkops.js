@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 require("dotenv").config();
 const fs = require("fs");
+const crypto = require("crypto");
 
 const getUintEncodedString = (plainString) => {
-  const encoder = new TextEncoder();
-  const uint8Array = encoder.encode(plainString);
+  const hash = crypto.createHash("sha256").update(plainString).digest("hex");
 
-  const numericU32Array = [];
-  uint8Array.forEach((element) => {
-    numericU32Array.push(element.toString());
-  });
+  const uintArray = [];
+  for (let i = 0; i < 16; i += 2) {
+    uintArray.push(parseInt(hash.slice(i, i + 2), 16).toString());
+  }
 
-  return numericU32Array;
+  return uintArray;
 };
 
 async function generatePasswordHash(passwordArray) {

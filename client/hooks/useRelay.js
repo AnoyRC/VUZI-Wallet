@@ -117,7 +117,11 @@ export default function useRelay() {
       }
     );
 
-    console.log(response.data);
+    if (!response.data.success) {
+      throw new Error(response.data.error);
+    }
+
+    return response.data.receipt;
   };
 
   return {

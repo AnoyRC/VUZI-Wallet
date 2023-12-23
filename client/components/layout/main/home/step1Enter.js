@@ -6,6 +6,10 @@ import {
   setStep,
   setWalletAddress,
 } from "@/redux/slice/homeSlice";
+import {
+  setWalletAddress as setAddress,
+  setPassword as setPass,
+} from "@/redux/slice/walletSlice";
 import { Button } from "@material-tailwind/react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { Gotu } from "next/font/google";
@@ -13,6 +17,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { setName } from "@/redux/slice/walletSlice";
 
 const gotu = Gotu({
   subsets: ["latin"],
@@ -92,25 +97,35 @@ export default function Step1Enter() {
         )}
 
         {verified && (
-          <Button
-            color="black"
-            size="lg"
-            className={
-              "-mt-14 rounded-full h-[180px] w-[180px] flex items-center justify-center text-lg bg-[#c3fb6d] " +
-              gotu.className
-            }
-            onClick={() => {
-              // Go To Dashboard
-            }}
-          >
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              width={50}
-              height={50}
-              className=""
-            />
-          </Button>
+          <div className="relative">
+            <div className="circles absolute top-9 left-[5.5rem] transform -translate-x-1/2 -translate-y-1/2 z-0">
+              <div className="circle1"></div>
+            </div>
+            <Button
+              color="black"
+              size="lg"
+              className={
+                "-mt-14 rounded-full h-[180px] w-[180px] flex items-center justify-center text-lg bg-[#c3fb6d] relative z-10 " +
+                gotu.className
+              }
+              onClick={() => {
+                dispatch(setName(name));
+                dispatch(setPass(password));
+                dispatch(setAddress(walletAddress));
+                dispatch(setPassword(""));
+                dispatch(setWalletAddress(""));
+                // Go To Dashboard
+              }}
+            >
+              <Image
+                src="/logo.svg"
+                alt="Logo"
+                width={50}
+                height={50}
+                className=""
+              />
+            </Button>
+          </div>
         )}
 
         {!verified && (
