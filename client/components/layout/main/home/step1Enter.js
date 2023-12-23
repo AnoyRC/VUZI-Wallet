@@ -114,6 +114,7 @@ export default function Step1Enter() {
                 dispatch(setAddress(walletAddress));
                 dispatch(setPassword(""));
                 dispatch(setWalletAddress(""));
+                dispatch(setStep(0));
                 // Go To Dashboard
               }}
             >

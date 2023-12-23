@@ -7,7 +7,11 @@ import {
   setPassword as setPass,
   setWalletAddress as setAddress,
 } from "@/redux/slice/walletSlice";
-import { setPassword, setWalletAddress } from "@/redux/slice/homeSlice";
+import {
+  setPassword,
+  setStep,
+  setWalletAddress,
+} from "@/redux/slice/homeSlice";
 import Image from "next/image";
 
 const gotu = Gotu({
@@ -40,6 +44,7 @@ export default function Step3Create() {
           dispatch(setAddress(walletAddress));
           dispatch(setPassword(""));
           dispatch(setWalletAddress(""));
+          dispatch(setStep(0));
           // Go To Dashboard
         }}
       >

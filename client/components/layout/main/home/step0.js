@@ -29,6 +29,8 @@ export default function Step0() {
   const isLoading = useSelector((state) => state.home.isLoading);
   const name = useSelector((state) => state.home.name);
   const dispatch = useDispatch();
+  var timeout = setTimeout(function () {}, 0);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     setRandomName();
@@ -85,16 +87,25 @@ export default function Step0() {
       } else {
         inputRef.current.style.width = "5ch";
       }
-    }
 
-    if (name.length > 0) {
-      checkVuzi();
+      inputRef.current.addEventListener("keydown", function () {
+        setIsTyping(true);
+        timeout = setTimeout(function () {
+          setIsTyping(false);
+        }, 1000);
+      });
     }
   }, [name]);
 
+  useEffect(() => {
+    if (isTyping) {
+      dispatch(setIsLoading(true));
+    } else {
+      checkVuzi();
+    }
+  }, [isTyping, name]);
+
   const checkVuzi = async () => {
-    dispatch(setIsLoading(true));
-    await new Promise((r) => setTimeout(r, 500));
     const isUsed = await getVuzi(name);
     if (isUsed) {
       const walletAddress = await getVuziWallet(name);
