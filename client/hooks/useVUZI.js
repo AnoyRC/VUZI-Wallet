@@ -6,9 +6,13 @@ import axios from "axios";
 import { ethers } from "ethers";
 import victionTestnet from "@/utils/configs/victionTestnet";
 import VUZIFactory from "@/utils/contracts/VUZIFactory";
+import { useDispatch, useSelector } from "react-redux";
+import { setWalletData } from "@/redux/slice/walletSlice";
 
 export default function useVUZI() {
   const { execute } = useRelay();
+  const dispatch = useDispatch();
+  const walletAddress = useSelector((state) => state.wallet.walletAddress);
 
   const deployVUZI = async (recoveryCodes, password, name) => {
     try {
@@ -71,7 +75,15 @@ export default function useVUZI() {
     }
   };
 
+  const fetchWalletData = async () => {
+    const response = await axios.get(
+      `https://scan-api-testnet.viction.xyz/api/account/${walletAddress}`
+    );
+    dispatch(setWalletData(response.data));
+  };
+
   return {
     deployVUZI,
+    fetchWalletData,
   };
 }

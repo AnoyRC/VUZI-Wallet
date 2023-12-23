@@ -16,6 +16,12 @@ export default function Background() {
                 return "home";
               case "/wallet":
                 return "wallet";
+              case "/transfer":
+                return "transfer";
+              case "/transactions":
+                return "tx";
+              case "/deposit":
+                return "deposit";
               default:
                 return "default";
             }

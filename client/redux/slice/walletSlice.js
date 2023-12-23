@@ -7,6 +7,7 @@ const walletSlice = createSlice({
     name: "",
     password: "",
     walletAddress: "",
+    walletData: null,
   },
 
   reducers: {
@@ -19,9 +20,13 @@ const walletSlice = createSlice({
     setWalletAddress: (state, action) => {
       state.walletAddress = action.payload;
     },
+    setWalletData: (state, action) => {
+      state.walletData = action.payload;
+    },
   },
 });
 
-export const { setName, setPassword, setWalletAddress } = walletSlice.actions;
+export const { setName, setPassword, setWalletAddress, setWalletData } =
+  walletSlice.actions;
 
 export default walletSlice.reducer;

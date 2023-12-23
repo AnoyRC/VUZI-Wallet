@@ -111,6 +111,7 @@ export default function Step0() {
       const walletAddress = await getVuziWallet(name);
       dispatch(setWalletAddress(walletAddress));
     }
+    if (isTyping) return;
     dispatch(setIsUsed(isUsed));
     dispatch(setIsLoading(false));
   };

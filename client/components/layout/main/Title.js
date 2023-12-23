@@ -16,6 +16,15 @@ export default function Title() {
       {pathName === "/wallet" && (
         <Image src="/logo.svg" alt="Logo" width={60} height={60} />
       )}
+      {pathName === "/transfer" && (
+        <h1 className="text-3xl font-semibold text-black/80">TRANSFER</h1>
+      )}
+      {pathName === "/DEPOSIT" && (
+        <h1 className="text-3xl font-semibold text-black/80">DEPOSIT</h1>
+      )}
+      {pathName === "/transactions" && (
+        <h1 className="text-3xl font-semibold text-black/80">TX</h1>
+      )}
     </div>
   );
 }
