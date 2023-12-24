@@ -11,6 +11,7 @@ import {
   ArrowUpDown,
   ArrowUpRight,
   Copy,
+  Loader2,
   LogOut,
   MapPin,
   QrCode,
@@ -23,6 +24,7 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { handleQrCodeDialog } from "@/redux/slice/dialogSlice";
+import useVUZI from "@/hooks/useVUZI";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -36,6 +38,8 @@ export default function Page() {
   const dispatch = useDispatch();
   const [currencyToggle, setCurrencyToggle] = useState(false);
   const walletData = useSelector((state) => state.wallet.walletData);
+  const { socialLogout } = useVUZI();
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="flex h-[92vh] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5">
@@ -199,18 +203,25 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
             "mt-3 text-red-500 rounded-full flex items-center font-normal border-red-500 border-[1px] justify-center text-md w-[180px] " +
             urbanist.className
           }
-          onClick={() => {
+          onClick={async () => {
+            if (isLoading) return;
+            setIsLoading(true);
+            await socialLogout();
             dispatch(setName(""));
             dispatch(setPassword(""));
             dispatch(setWalletAddress(""));
             router.push("/home");
             toast.success("Logged Out !");
+            setIsLoading(false);
           }}
         >
-          <>
-            <LogOut className="text-red-500" size={14} />
-            Logout
-          </>
+          {isLoading && <Loader2 className="animate-spin" size={24} />}
+          {!isLoading && (
+            <>
+              <LogOut className="text-red-500" size={14} />
+              Logout
+            </>
+          )}
         </Button>
       </div>
     </div>

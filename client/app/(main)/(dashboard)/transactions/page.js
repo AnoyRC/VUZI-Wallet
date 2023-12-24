@@ -64,7 +64,7 @@ export default function Page() {
               transactions.data &&
               transactions.data.length === 0 && (
                 <div className="flex justify-center items-center w-full h-full">
-                  <h1 className="text-black/70 text-2xl font-semibold">
+                  <h1 className="text-black/50 text-2xl font-normal">
                     No transactions yet
                   </h1>
                 </div>

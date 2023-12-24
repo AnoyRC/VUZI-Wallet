@@ -19,7 +19,7 @@ export default function Title() {
       {pathName === "/transfer" && (
         <h1 className="text-3xl font-semibold text-black/80">TRANSFER</h1>
       )}
-      {pathName === "/DEPOSIT" && (
+      {pathName === "/deposit" && (
         <h1 className="text-3xl font-semibold text-black/80">DEPOSIT</h1>
       )}
       {pathName === "/transactions" && (

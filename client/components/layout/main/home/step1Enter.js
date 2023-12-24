@@ -19,6 +19,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { setName } from "@/redux/slice/walletSlice";
 import { useRouter } from "next/navigation";
+import useVUZI from "@/hooks/useVUZI";
 
 const gotu = Gotu({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function Step1Enter() {
   const isLoading = useSelector((state) => state.home.isLoading);
   const [verified, setVerified] = useState(false);
   const router = useRouter();
+  const { socialLogin } = useVUZI();
 
   const handleVerifyPassword = async () => {
     dispatch(setIsLoading(true));
@@ -46,10 +48,50 @@ export default function Step1Enter() {
     dispatch(setIsLoading(false));
   };
 
+  const handleSocialLogin = async () => {
+    dispatch(setIsLoading(true));
+    const pass_id = await socialLogin();
+    if (pass_id) {
+      dispatch(setPassword(pass_id));
+      const isVerified = await verifyPassword(walletAddress, pass_id, name);
+      setVerified(isVerified);
+      if (isVerified) {
+        toast.success("VUZI Initialized");
+      }
+    }
+    dispatch(setIsLoading(false));
+  };
+
   return (
     <>
       {!verified && (
         <>
+          <Button
+            color="white"
+            size="lg"
+            className={
+              " rounded-full flex items-center border-black border-[1px] justify-center text-lg w-[180px] " +
+              gotu.className
+            }
+            onClick={() => {
+              if (isLoading) return;
+              handleSocialLogin();
+            }}
+          >
+            {isLoading && <Loader2 className="animate-spin" size={24} />}
+            {!isLoading && (
+              <>
+                <Image src="/google.svg" alt="Logo" width={20} height={20} />
+                Socials
+              </>
+            )}
+          </Button>
+
+          <div className="flex items-center justify-center gap-3 w-[150px] text-black/80  mt-6 mb-5">
+            <div className="w-full bg-black h-[1px]" /> OR
+            <div className="w-full bg-black h-[1px]" />
+          </div>
+
           <div className="flex items-center">
             <input
               className={
@@ -141,6 +183,7 @@ export default function Step1Enter() {
               gotu.className
             }
             onClick={() => {
+              if (isLoading) return;
               dispatch(setPassword(""));
               dispatch(setWalletAddress(""));
               dispatch(setStep(0));

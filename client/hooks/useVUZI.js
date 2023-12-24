@@ -8,6 +8,7 @@ import victionTestnet from "@/utils/configs/victionTestnet";
 import VUZIFactory from "@/utils/contracts/VUZIFactory";
 import { useDispatch, useSelector } from "react-redux";
 import { setWalletData } from "@/redux/slice/walletSlice";
+import { createAuth0Client } from "@auth0/auth0-spa-js";
 
 export default function useVUZI() {
   const { execute } = useRelay();
@@ -82,8 +83,56 @@ export default function useVUZI() {
     dispatch(setWalletData(response.data));
   };
 
+  const socialLogin = async () => {
+    try {
+      const auth0Client = await createAuth0Client({
+        domain: process.env.NEXT_PUBLIC_DOMAIN_URL,
+        clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      });
+
+      const login = async () => {
+        await auth0Client.loginWithPopup({
+          authorizationParams: {
+            redirect_uri: window.location.origin,
+          },
+        });
+      };
+
+      await login();
+
+      const isAuthenticated = await auth0Client.isAuthenticated();
+
+      if (isAuthenticated) {
+        const user = await auth0Client.getUser();
+
+        if (!user.sub) return false;
+        return user.sub;
+      }
+
+      return false;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+
+  const socialLogout = async () => {
+    const auth0Client = await createAuth0Client({
+      domain: process.env.NEXT_PUBLIC_DOMAIN_URL,
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+    });
+
+    auth0Client.logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
+
   return {
     deployVUZI,
     fetchWalletData,
+    socialLogin,
+    socialLogout,
   };
 }
