@@ -6,7 +6,7 @@ export default function Title() {
   const pathName = usePathname();
 
   return (
-    <div className="z-10 mt-10">
+    <div className="z-10 mt-[4vh]">
       {pathName === "/" && (
         <Image src="/logo.svg" alt="Logo" width={60} height={60} />
       )}

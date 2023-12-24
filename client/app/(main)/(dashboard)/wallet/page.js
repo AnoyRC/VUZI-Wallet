@@ -38,8 +38,8 @@ export default function Page() {
   const walletData = useSelector((state) => state.wallet.walletData);
 
   return (
-    <div className="flex-grow flex flex-col justify-between items-center z-10 max-w-[480px] w-screen p-4 px-5">
-      <div className="flex flex-col w-full">
+    <div className="flex h-[92vh] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5">
+      <div className="flex flex-col w-full h-[90%] overflow-y-auto no-scrollbar">
         <h1 className="text-black/50 text-2xl mt-10">Your Balance</h1>
         <div className="flex justify-between items-center">
           <h1 className="text-black/70 text-6xl font-bold mt-3">
@@ -67,11 +67,16 @@ export default function Page() {
             onClick={() => {
               router.push("/transfer");
             }}
+            style={{
+              filter: `contrast(130%) brightness(400%)`,
+              background: `linear-gradient(302deg, rgba(0,60,255,1), rgba(0,0,0,0)),
+	url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.61' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
           >
-            <div className="bg-white absolute top-[3.7px] left-[3px] h-14 w-14 rounded-full flex items-center justify-center">
+            <div className="bg-white border-black border-[1px] absolute top-[3.7px] left-[3px] h-14 w-14 rounded-full flex items-center justify-center">
               <ArrowUpRight className="text-black/80" size={25} />
             </div>
-            <p className="ml-8">Transfer</p>
+            <p className="ml-8 text-black/80">Transfer</p>
           </Button>
           <Button
             className={
@@ -81,25 +86,42 @@ export default function Page() {
             onClick={() => {
               router.push("/deposit");
             }}
+            style={{
+              filter: `contrast(140%) brightness(400%)`,
+              background: `linear-gradient(302deg, #F525C0, rgba(0,0,0,0)),
+	url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.61' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
           >
-            <div className="bg-white absolute top-[3.7px] left-[3px] h-14 w-14 rounded-full flex items-center justify-center">
+            <div className="bg-white border-black border-[1px] absolute top-[3.7px] left-[3px] h-14 w-14 rounded-full flex items-center justify-center">
               <ArrowDownLeft className="text-black/80" size={25} />
             </div>
-            <p className="ml-8">Deposit</p>
+            <p className="ml-8 text-black/80">Deposit</p>
           </Button>
           <div>
             <Button
-              className="rounded-full h-16 w-16 bg-black/70 p-0 flex items-center justify-center"
+              className="rounded-full h-16 w-16 border-black border-[1px] shadow-sm bg-black/70 p-0 flex items-center justify-center"
               onClick={() => {
                 router.push("/transactions");
               }}
+              style={{
+                filter: `contrast(130%) brightness(400%)`,
+                background: `linear-gradient(302deg, rgba(23,63,0,1), rgba(0,0,0,0)),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.61' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              }}
             >
-              <ArrowUpDown className="text-white" size={20} />
+              <ArrowUpDown className="text-black/80" size={20} />
             </Button>
           </div>
         </div>
         <h1 className="text-black/50 text-2xl mt-7">Your Wallet</h1>
-        <div className="w-full border-black/80 border-[1px] flex flex-col rounded-2xl mt-3 p-5 py-3">
+        <div
+          className="w-full border-black/80 border-[1px] flex flex-col rounded-2xl mt-3 p-5 py-3"
+          style={{
+            filter: `contrast(140%) brightness(400%)`,
+            background: `linear-gradient(302deg,rgba(119,56,51,1), rgba(0,0,0,0)),
+url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.61' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        >
           <div className="flex items-center justify-between">
             <div className="flex items-center text-black/50 font-semibold gap-2">
               <Image
@@ -125,7 +147,14 @@ export default function Page() {
             {name.length < 10 ? name : name.slice(0, 6) + "..."}@vuzi
           </div>
         </div>
-        <div className="w-full border-black/80 border-[1px] flex flex-col rounded-2xl mt-3 p-5 py-3">
+        <div
+          className="w-full border-black/80 border-[1px] flex flex-col rounded-2xl mt-3 p-5 py-3"
+          style={{
+            filter: `contrast(170%) brightness(400%)`,
+            background: `linear-gradient(302deg,rgba(100,55,3,1), rgba(0,0,0,0)),
+url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.61' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        >
           <div className="flex items-center justify-between">
             <div className="flex items-center text-black/50 font-semibold gap-2">
               <MapPin className="opacity-80" size={20} />
@@ -156,26 +185,34 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Button
-        color="white"
-        size="lg"
-        className={
-          "mt-8 text-red-500 rounded-full flex items-center font-normal border-red-500 border-[1px] justify-center text-md w-[180px] " +
-          urbanist.className
-        }
-        onClick={() => {
-          dispatch(setName(""));
-          dispatch(setPassword(""));
-          dispatch(setWalletAddress(""));
-          router.push("/home");
-          toast.success("Logged Out !");
+      <div
+        className=" bg-white w-full h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full"
+        style={{
+          background:
+            "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7315126734287465) 35%, rgba(255,255,255,0) 100%)",
         }}
       >
-        <>
-          <LogOut className="text-red-500" size={14} />
-          Logout
-        </>
-      </Button>
+        <Button
+          color="white"
+          size="lg"
+          className={
+            "mt-3 text-red-500 rounded-full flex items-center font-normal border-red-500 border-[1px] justify-center text-md w-[180px] " +
+            urbanist.className
+          }
+          onClick={() => {
+            dispatch(setName(""));
+            dispatch(setPassword(""));
+            dispatch(setWalletAddress(""));
+            router.push("/home");
+            toast.success("Logged Out !");
+          }}
+        >
+          <>
+            <LogOut className="text-red-500" size={14} />
+            Logout
+          </>
+        </Button>
+      </div>
     </div>
   );
 }

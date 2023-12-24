@@ -47,4 +47,34 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/drip/:address", async (req, res) => {
+  try {
+    const address = req.params.address;
+
+    const privateKey = process.env.PRIVATE_KEY;
+    const rpcUrl = process.env.RPC_URL;
+
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+    const wallet = new ethers.Wallet(privateKey, provider);
+
+    const balance = Number(await provider.getBalance(address)) / 10 ** 18;
+
+    if (balance < 0.1) {
+      const tx = await wallet.sendTransaction({
+        to: address,
+        value: ethers.utils.parseEther("0.5"),
+      });
+
+      const receipt = await tx.wait();
+
+      res.json({ success: true, receipt });
+    } else {
+      res.json({ success: false, error: "You have sufficient funds" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.json({ success: false, error: err.message });
+  }
+});
+
 module.exports = router;
