@@ -179,7 +179,84 @@ export default function useVUZI() {
       return true;
     } catch (err) {
       console.log(err);
-      toast.error("Transfer failed Failed");
+      toast.error("Transfer Failed");
+      return false;
+    }
+  };
+
+  const executeRecovery = async (
+    name,
+    password,
+    walletAddress,
+    recoveryCode
+  ) => {
+    try {
+      const provider = new ethers.providers.JsonRpcProvider(
+        victionTestnet.rpcUrl
+      );
+
+      const VUZIWallet = new ethers.Contract(walletAddress, VUZI.abi, provider);
+
+      const factory = new ethers.Contract(
+        victionTestnet.VUZIFactory,
+        VUZIFactory.abi,
+        provider
+      );
+
+      const currentNonce = (await VUZIWallet.getNonce()).toString();
+
+      const recoveryCodeHash1 = (await VUZIWallet.recoveryHashes(0)).toString();
+      const recoveryCodeHash2 = (await VUZIWallet.recoveryHashes(1)).toString();
+      const recoveryCodeHash3 = (await VUZIWallet.recoveryHashes(2)).toString();
+      const recoveryCodeHash4 = (await VUZIWallet.recoveryHashes(3)).toString();
+
+      const body = {
+        recoveryCode: recoveryCode,
+        recoveryHashes: [
+          recoveryCodeHash1,
+          recoveryCodeHash2,
+          recoveryCodeHash3,
+          recoveryCodeHash4,
+        ],
+        nonce: currentNonce,
+      };
+
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/zkops/recovery/verify`,
+        body
+      );
+
+      if (!response.data.proof) {
+        throw new Error("Proof Not verified");
+      }
+
+      const passwordBody = {
+        password: password,
+      };
+
+      const hashResponse = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/zkops/passcode/hash`,
+        passwordBody
+      );
+
+      if (!hashResponse.data.passwordHash) {
+        throw new Error("Password Hash not found");
+      }
+
+      const data = factory.interface.encodeFunctionData("changePasscode", [
+        name,
+        response.data.proof,
+        hashResponse.data.passwordHash,
+      ]);
+
+      await execute(data);
+
+      toast.success("Recovery Successful");
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      toast.error("Recovery Failed");
       return false;
     }
   };
@@ -190,5 +267,6 @@ export default function useVUZI() {
     socialLogin,
     socialLogout,
     executeTx,
+    executeRecovery,
   };
 }

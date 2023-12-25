@@ -25,6 +25,9 @@ export default function Title() {
       {pathName === "/transactions" && (
         <h1 className="text-3xl font-semibold text-black/80">TX</h1>
       )}
+      {pathName === "/recover" && (
+        <h1 className="text-3xl font-semibold text-black/80">RECOVER</h1>
+      )}
     </div>
   );
 }

@@ -70,16 +70,13 @@ export default function Page() {
                 <Loader2 className="animate-spin text-black/70" size={64} />
               </div>
             )}
-            {!isLoading &&
-              transactions &&
-              transactions.data &&
-              transactions.data.length === 0 && (
-                <div className="flex justify-center items-center w-full h-full">
-                  <h1 className="text-black/50 text-2xl font-normal">
-                    No transactions yet
-                  </h1>
-                </div>
-              )}
+            {!isLoading && transactions && transactions.length === 0 && (
+              <div className="flex justify-center items-center w-full h-full">
+                <h1 className="text-black/50 text-2xl font-normal">
+                  No transactions yet
+                </h1>
+              </div>
+            )}
           </div>
         </div>
 

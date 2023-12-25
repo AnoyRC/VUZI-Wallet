@@ -20,6 +20,10 @@ import toast from "react-hot-toast";
 import { setName } from "@/redux/slice/walletSlice";
 import { useRouter } from "next/navigation";
 import useVUZI from "@/hooks/useVUZI";
+import {
+  setWalletAddress as setAddress2,
+  setName as setName2,
+} from "@/redux/slice/recoverSlice";
 
 const gotu = Gotu({
   subsets: ["latin"],
@@ -106,6 +110,21 @@ export default function Step1Enter() {
               }}
             ></input>
           </div>
+
+          <h3 className="text-black/80 text-center mt-2 -mb-3">
+            {" "}
+            Can't login?{" "}
+            <span
+              className="hover:underline hover:cursor-pointer hover:text-red-500 underline-offset-2"
+              onClick={() => {
+                dispatch(setAddress2(walletAddress));
+                dispatch(setName2(name));
+                router.push("/recover");
+              }}
+            >
+              Recover
+            </span>
+          </h3>
         </>
       )}
       <div className="flex flex-col items-center">

@@ -1,46 +1,48 @@
 "use client";
 
-import { handleTransferDialog } from "@/redux/slice/dialogSlice";
+import { handleRecoverDialog } from "@/redux/slice/dialogSlice";
 import { Dialog, DialogBody, Button } from "@material-tailwind/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { Urbanist } from "next/font/google";
 import { useState } from "react";
 import useVUZI from "@/hooks/useVUZI";
-import { setIsLoading } from "@/redux/slice/transferSlice";
-import { ethers } from "ethers";
+import {
+  setIsLoading,
+  setName,
+  setPassword,
+  setRecoveryCode,
+  setWalletAddress,
+} from "@/redux/slice/recoverSlice";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
 });
 
-export default function TransferDialog() {
-  const transferDialog = useSelector((state) => state.dialog.transferDialog);
+export default function RecoverDialog() {
+  const recoverDialog = useSelector((state) => state.dialog.recoverDialog);
   const dispatch = useDispatch();
-  const type = useSelector((state) => state.transfer.type);
-  const walletAddress = useSelector((state) => state.transfer.walletAddress);
-  const amount = useSelector((state) => state.transfer.amount);
-  const domain = useSelector((state) => state.transfer.domain);
-  const isLoading = useSelector((state) => state.transfer.isLoading);
+  const isLoading = useSelector((state) => state.recover.isLoading);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { executeTx } = useVUZI();
-  const name = useSelector((state) => state.wallet.name);
-  const password = useSelector((state) => state.wallet.password);
-  const { fetchWalletData } = useVUZI();
   const [isError, setIsError] = useState(false);
+  const router = useRouter();
+  const { executeRecovery } = useVUZI();
+  const name = useSelector((state) => state.recover.name);
+  const walletAddress = useSelector((state) => state.recover.walletAddress);
+  const password = useSelector((state) => state.recover.password);
+  const recoveryCode = useSelector((state) => state.recover.recoveryCode);
 
-  const handleTransfer = async () => {
+  const handleRecovery = async () => {
     dispatch(setIsLoading(true));
-    const success = await executeTx(
+    const success = await executeRecovery(
       name,
       password,
       walletAddress,
-      ethers.utils.parseEther(amount),
-      "0x"
+      recoveryCode
     );
-    await fetchWalletData();
     setIsError(!success);
     setIsSuccess(success);
     dispatch(setIsLoading(false));
@@ -48,10 +50,10 @@ export default function TransferDialog() {
 
   return (
     <Dialog
-      open={transferDialog}
+      open={recoverDialog}
       handler={() => {
         if (isLoading) return;
-        dispatch(handleTransferDialog());
+        dispatch(handleRecoverDialog());
       }}
       className="bg-transparent flex-col shadow-none flex items-center justify-center w-1/4"
     >
@@ -64,30 +66,13 @@ export default function TransferDialog() {
             alt="transfer"
             className="opacity-90 mb-5"
           />
-          {!isLoading && !isSuccess && !isError && (
-            <h2>
-              You are going to transfer{" "}
-              <span className="font-bold"> {Number(amount).toFixed(2)} </span>{" "}
-              to{" "}
-              <span className="font-bold">
-                {type === "Address"
-                  ? walletAddress.substring(0, 6) +
-                    "..." +
-                    walletAddress.substring(38, 42)
-                  : domain.length > 10
-                  ? domain.substring(0, 7) + "..."
-                  : domain}
-              </span>
-              . <br />
-              Ready to proceed ?
-            </h2>
-          )}
+          {!isLoading && !isSuccess && !isError && <h2>Ready to proceed ?</h2>}
 
-          {isLoading && <h2>Please wait while we process your transaction</h2>}
+          {isLoading && <h2>Please wait while we process your recovery</h2>}
 
-          {isSuccess && !isLoading && <h2> Transfer Successful </h2>}
+          {isSuccess && !isLoading && <h2> Recovery Successful </h2>}
 
-          {isError && !isLoading && <h2> Transfer Failed </h2>}
+          {isError && !isLoading && <h2> Recovery failed </h2>}
 
           <div className="flex items-center justify-center w-full gap-2">
             {!isLoading && !isSuccess && !isError && (
@@ -102,7 +87,7 @@ export default function TransferDialog() {
                   }
                   onClick={() => {
                     if (isLoading) return;
-                    dispatch(handleTransferDialog());
+                    dispatch(handleRecoverDialog());
                   }}
                 >
                   Cancel
@@ -115,7 +100,7 @@ export default function TransferDialog() {
                     urbanist.className
                   }
                   onClick={() => {
-                    handleTransfer();
+                    handleRecovery();
                   }}
                 >
                   Confirm
@@ -134,7 +119,12 @@ export default function TransferDialog() {
                 onClick={() => {
                   setIsSuccess(false);
                   setIsError(false);
-                  dispatch(handleTransferDialog());
+                  dispatch(handleRecoverDialog());
+                  dispatch(setRecoveryCode(""));
+                  dispatch(setPassword(""));
+                  dispatch(setName(""));
+                  dispatch(setWalletAddress(""));
+                  router.push("/home");
                 }}
               >
                 Close

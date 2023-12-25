@@ -22,6 +22,8 @@ export default function Background() {
                 return "tx";
               case "/deposit":
                 return "deposit";
+              case "/recover":
+                return "recover";
               default:
                 return "default";
             }
