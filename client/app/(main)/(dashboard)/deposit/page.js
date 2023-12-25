@@ -80,10 +80,9 @@ export default function Page() {
 
           {walletData && walletData.balanceNumber > 0.1 && (
             <div className="flex w-full mt-5 gap-3">
-              <AlertTriangle className="text-red-500 -mt-1" size={40} />
+              <AlertTriangle className="text-red-500 " size={20} />
               <p className="text-black/70">
-                Your balance is sufficient to test the prototype. You are
-                eligible for another drip if your balance is less than 0.1
+                Your balance is sufficient to test the prototype.
               </p>
             </div>
           )}
@@ -168,8 +167,8 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
           <div className="flex w-full mt-5 gap-3">
             <Info className="text-black/70 -mt-1" size={40} />
             <p className="text-black/70">
-              Ask your friends to send you some VIC to any of the above address,
-              VUZI domains only works on VUZI wallet.
+              Ask your friends to send you some VIC to any of the above
+              address', VUZI domains only works on VUZI wallet.
             </p>
           </div>
         </div>
@@ -189,6 +188,7 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
               urbanist.className
             }
             onClick={() => {
+              if (isLoading) return;
               router.push("/wallet");
             }}
           >

@@ -5,6 +5,7 @@ import defaultSlice from "./slice/defaultSlice";
 import homeSlice from "./slice/homeSlice";
 import walletSlice from "./slice/walletSlice";
 import dialogSlice from "./slice/dialogSlice";
+import transferSlice from "./slice/transferSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     home: homeSlice,
     wallet: walletSlice,
     dialog: dialogSlice,
+    transfer: transferSlice,
   },
 
   middleware: (getDefaultMiddleware) =>

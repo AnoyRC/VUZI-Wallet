@@ -26,12 +26,24 @@ export default function Page() {
 
   const fetchTransactions = async () => {
     setIsLoading(true);
-    const response = await axios.get(
+    const externalTxResponse = await axios.get(
       `https://scan-api-testnet.viction.xyz/api/transaction/list?account=${walletAddress}&offset=0&limit=10`
     );
+    const externalTx = externalTxResponse.data;
 
-    console.log(response.data);
-    setTransactions(response.data);
+    const internalTxResponse = await axios.get(
+      `https://scan-api-testnet.viction.xyz/api/transaction/internal?account=${walletAddress}&offset=0&limit=10`
+    );
+    const internalTx = internalTxResponse.data;
+
+    const transactions = [...externalTx.data, ...internalTx.data];
+
+    transactions.sort((a, b) => {
+      return b.timestamp - a.timestamp;
+    });
+
+    setTransactions(transactions);
+
     setIsLoading(false);
   };
 
@@ -43,9 +55,8 @@ export default function Page() {
           <div className="flex flex-col w-full h-full mt-3 gap-3 overflow-y-auto no-scrollbar">
             {!isLoading &&
               transactions &&
-              transactions.data &&
-              transactions.data.length > 0 &&
-              transactions.data.map((transaction, index) => {
+              transactions.length > 0 &&
+              transactions.map((transaction, index) => {
                 return (
                   <Transaction
                     transaction={transaction}

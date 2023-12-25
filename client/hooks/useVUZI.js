@@ -9,6 +9,7 @@ import VUZIFactory from "@/utils/contracts/VUZIFactory";
 import { useDispatch, useSelector } from "react-redux";
 import { setWalletData } from "@/redux/slice/walletSlice";
 import { createAuth0Client } from "@auth0/auth0-spa-js";
+import VUZI from "@/utils/contracts/VUZI";
 
 export default function useVUZI() {
   const { execute } = useRelay();
@@ -129,10 +130,65 @@ export default function useVUZI() {
     });
   };
 
+  const executeTx = async (name, password, dest, value, func) => {
+    try {
+      const provider = new ethers.providers.JsonRpcProvider(
+        victionTestnet.rpcUrl
+      );
+
+      const VUZIWallet = new ethers.Contract(walletAddress, VUZI.abi, provider);
+
+      const factory = new ethers.Contract(
+        victionTestnet.VUZIFactory,
+        VUZIFactory.abi,
+        provider
+      );
+
+      const currentNonce = (await VUZIWallet.getNonce()).toString();
+
+      const passwordHash1 = (await VUZIWallet.passwordHash(0)).toString();
+      const passwordHash2 = (await VUZIWallet.passwordHash(1)).toString();
+
+      const body = {
+        password: password,
+        passwordHashes: [passwordHash1, passwordHash2],
+        nonce: currentNonce,
+      };
+
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/zkops/passcode/verify`,
+        body
+      );
+
+      if (!response.data.proof) {
+        throw new Error("Proof Not verified");
+      }
+
+      const data = factory.interface.encodeFunctionData("executeVUZITx", [
+        name,
+        response.data.proof,
+        dest,
+        value,
+        func,
+      ]);
+
+      await execute(data);
+
+      toast.success("Transfer Successful");
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      toast.error("Transfer failed Failed");
+      return false;
+    }
+  };
+
   return {
     deployVUZI,
     fetchWalletData,
     socialLogin,
     socialLogout,
+    executeTx,
   };
 }
