@@ -49,10 +49,10 @@ export default function Page() {
 
   return (
     <>
-      <div className="flex h-[92vh] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5">
-        <div className="flex flex-col w-full h-[90%]">
+      <div className="flex h-[94%] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5 relative">
+        <div className="flex flex-col w-full h-full">
           <h1 className="text-black/50 text-2xl mt-10">Recent Transactions</h1>
-          <div className="flex flex-col w-full h-full mt-3 gap-3 overflow-y-auto no-scrollbar">
+          <div className="flex flex-col w-full h-full mt-3 gap-3 pb-24 overflow-y-auto no-scrollbar">
             {!isLoading &&
               transactions &&
               transactions.length > 0 &&
@@ -81,7 +81,7 @@ export default function Page() {
         </div>
 
         <div
-          className=" bg-white w-full h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full"
+          className=" bg-white w-screen max-w-[480px] h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full fixed bottom-4"
           style={{
             background:
               "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7315126734287465) 35%, rgba(255,255,255,0) 100%)",

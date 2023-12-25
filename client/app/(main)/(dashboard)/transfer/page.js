@@ -7,6 +7,7 @@ import {
   ClipboardPaste,
   HelpCircle,
   MapPin,
+  Plus,
 } from "lucide-react";
 import { Urbanist } from "next/font/google";
 import { useDispatch, useSelector } from "react-redux";
@@ -95,8 +96,8 @@ export default function Page() {
 
   return (
     <>
-      <div className="flex h-[92vh] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5">
-        <div className="flex flex-col w-full h-[90%] overflow-y-auto no-scrollbar">
+      <div className="flex h-[94%] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5 relative">
+        <div className="flex flex-col w-full h-full overflow-y-auto pb-24 no-scrollbar">
           <h1 className="text-black/50 text-2xl mt-10">Send</h1>
           <div
             className="w-full flex flex-col border-black border-[1px] rounded-3xl mt-3 p-5"
@@ -213,10 +214,55 @@ export default function Page() {
             Transfer
             <ArrowUpRight className="text-black/80" size={24} />
           </Button>
+
+          <h1 className="text-black/50 text-2xl mt-5">Favourites</h1>
+          <div className="w-full flex items-center gap-3 mt-3">
+            <div
+              className="flex items-center justify-center flex-col hover:cursor-pointer"
+              onClick={() => {
+                handleWalletAddress("AnoyRC@vuzi");
+              }}
+            >
+              <Image
+                src="/profile/anoy.png"
+                width={100}
+                height={100}
+                alt="anoy"
+                className="rounded-xl"
+              />
+              <h1 className="text-black/70 text-sm mt-2">AnoyRC@vuzi</h1>
+            </div>
+            <div
+              className="flex items-center justify-center flex-col hover:cursor-pointer"
+              onClick={() => {
+                handleWalletAddress("KingOfTheNorth@vuzi");
+              }}
+            >
+              <Image
+                src="/profile/alpha.png"
+                width={100}
+                height={100}
+                alt="anoy"
+                className="rounded-xl"
+              />
+              <h1 className="text-black/70 text-sm mt-2">KOTN@vuzi</h1>
+            </div>
+            <div
+              className="flex items-center justify-center flex-col hover:cursor-pointer"
+              onClick={() => {
+                toast("Coming soon");
+              }}
+            >
+              <div className="h-[100px] w-[100px] rounded-xl flex items-center justify-center border-black/80 border-[1px]">
+                <Plus size={30} className="text-black/80" />
+              </div>
+              <h1 className="text-black/70 text-sm mt-2">Add More</h1>
+            </div>
+          </div>
         </div>
 
         <div
-          className=" bg-white w-full h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full"
+          className=" bg-white w-screen max-w-[480px] h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full fixed bottom-4"
           style={{
             background:
               "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7315126734287465) 35%, rgba(255,255,255,0) 100%)",

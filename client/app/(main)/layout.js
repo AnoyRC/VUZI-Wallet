@@ -9,7 +9,7 @@ export const metadata = {
 export default function LandingLayout({ children }) {
   return (
     <>
-      <div className="h-screen w-screen relative overflow-hidden flex flex-col items-center">
+      <div className="h-screen max-h-screen w-screen relative overflow-hidden flex flex-col items-center">
         <Title />
         {children}
         <Background />

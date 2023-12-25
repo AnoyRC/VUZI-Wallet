@@ -42,8 +42,8 @@ export default function Page() {
   };
 
   return (
-    <div className="flex h-[92vh] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5">
-      <div className="flex flex-col w-full h-[90%] overflow-y-auto items-center no-scrollbar">
+    <div className="flex h-[94%] flex-col mt-14 justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5 absolute">
+      <div className="flex flex-col w-full h-full pb-24 overflow-y-auto items-center no-scrollbar">
         <div className="flex flex-col justify-center items-center gap-2 mt-10">
           <div className="bg-black/70 flex items-center justify-center p-4 rounded-2xl ">
             <Image src="/logoWhite.svg" width={40} height={40} alt="logo" />
@@ -146,7 +146,7 @@ export default function Page() {
         </Button>
       </div>
       <div
-        className=" bg-white w-full h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full"
+        className=" bg-white w-screen max-w-[480px] h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full fixed bottom-4"
         style={{
           background:
             "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7315126734287465) 35%, rgba(255,255,255,0) 100%)",
