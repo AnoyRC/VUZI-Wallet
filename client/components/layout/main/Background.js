@@ -27,10 +27,10 @@ export default function Background() {
               default:
                 return "default";
             }
-          })()}.png`}
+          })()}.jpg`}
           alt="Background"
           width={800}
-          height={1000}
+          height={800}
         />
       </div>
       <div

@@ -224,7 +224,7 @@ export default function Page() {
               }}
             >
               <Image
-                src="/profile/anoy.png"
+                src="/profile/anoy.jpg"
                 width={100}
                 height={100}
                 alt="anoy"
@@ -239,7 +239,7 @@ export default function Page() {
               }}
             >
               <Image
-                src="/profile/alpha.png"
+                src="/profile/alpha.jpg"
                 width={100}
                 height={100}
                 alt="anoy"
