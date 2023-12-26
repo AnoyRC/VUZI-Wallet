@@ -8,6 +8,8 @@ const dialogSlice = createSlice({
     transferDialog: false,
     recoverDialog: false,
     introDialog: false,
+    horizonDialog: false,
+    futureDialog: false,
   },
 
   reducers: {
@@ -23,6 +25,12 @@ const dialogSlice = createSlice({
     handleIntroDialog: (state, action) => {
       state.introDialog = !state.introDialog;
     },
+    handleHorizonDialog: (state, action) => {
+      state.horizonDialog = !state.horizonDialog;
+    },
+    handleFutureDialog: (state, action) => {
+      state.futureDialog = !state.futureDialog;
+    },
   },
 });
 
@@ -31,6 +39,8 @@ export const {
   handleTransferDialog,
   handleRecoverDialog,
   handleIntroDialog,
+  handleHorizonDialog,
+  handleFutureDialog,
 } = dialogSlice.actions;
 
 export default dialogSlice.reducer;

@@ -4,22 +4,22 @@ import { Dialog, DialogBody, Button } from "@material-tailwind/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { Urbanist } from "next/font/google";
-import { handleIntroDialog } from "@/redux/slice/dialogSlice";
+import { handleFutureDialog } from "@/redux/slice/dialogSlice";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
 });
 
-export default function IntroDialog() {
+export default function FutureDialog() {
   const dispatch = useDispatch();
-  const introDialog = useSelector((state) => state.dialog.introDialog);
+  const futureDialog = useSelector((state) => state.dialog.futureDialog);
 
   return (
     <Dialog
-      open={introDialog}
+      open={futureDialog}
       handler={() => {
-        dispatch(handleIntroDialog());
+        dispatch(handleFutureDialog());
       }}
       className="bg-transparent flex-col shadow-none flex items-center justify-center w-1/4 outline-none"
     >
@@ -39,8 +39,8 @@ export default function IntroDialog() {
             <div
               className="p-7 border-black border-[1px] rounded-3xl"
               style={{
-                filter: `contrast(190%) brightness(400%)`,
-                background: `linear-gradient(302deg, rgba(100,55,3,1), rgba(0,0,0,0)),
+                filter: `contrast(200%) brightness(400%)`,
+                background: `linear-gradient(302deg, rgba(54,79,162,1), rgba(0,0,0,0)),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.61' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
               }}
             >
@@ -49,54 +49,43 @@ export default function IntroDialog() {
                 width={90}
                 height={90}
                 className="opacity-100"
-                alt="Logo"
+                alt="Viction"
               />
             </div>
           </div>
+
           <div className="flex flex-col mt-3">
             <p className="text-md font-semibold text-start text-black/80">
-              Embedded Wallets powered by zk for Self custody
+              Future and Possibilities
             </p>
             <div className="text-sm font-normal text-start mt-2 text-black/80 grid grid-cols-2 gap-2">
-              <h3 className="border-black border-[1px] pl-2 py-1  rounded-lg">
-                Seedless Wallet 😇{" "}
+              <h3 className="border-black border-[1px] pl-2 py-1 rounded-lg">
+                SDK for developers 🤖{" "}
               </h3>
               <h3 className="border-black border-[1px] pl-2 py-1 rounded-lg">
                 {" "}
-                Social Login 🫣{" "}
+                NFT based domains 🌄{" "}
               </h3>
               <h3 className="border-black border-[1px] pl-2 py-1 rounded-lg">
                 {" "}
-                Portable Wallet 🪂{" "}
+                Multichain Wallets 👩‍👩‍👧‍👧{" "}
               </h3>
               <h3 className="border-black border-[1px] pl-2 py-1 rounded-lg">
                 {" "}
-                Recoverable Wallet 🧞‍♂️{" "}
+                Extentions and Apps 🦊{" "}
               </h3>
-              <h3 className="border-black pl-2 border-[1px] py-1 rounded-lg">
+              <h3 className="border-black pl-2 border-[1px] py-1  rounded-lg">
                 {" "}
-                Gasless and Feeless 😸{" "}
+                Private Transfer 🥷{" "}
               </h3>
             </div>
           </div>
-          {/* <div className="flex flex-col mt-3">
-            <p className="text-md font-semibold text-start text-black/80">
-              Possibilities & Futures
-            </p>
-            <p className="text-sm font-normal text-start mt-2 text-black/80">
-              1. SDK for developers <br />
-              2. NFT based domains <br />
-              3. Multichain Wallets <br />
-              4. Extentions and Apps <br />
-              5. Private Transfer <br />
-            </p>
-          </div> */}
 
           <Button
             color="black"
             className="mt-5 rounded-3xl bg-black/80"
             onClick={() => {
-              dispatch(handleIntroDialog());
+              dispatch(handleFutureDialog());
             }}
           >
             Close

@@ -7,6 +7,9 @@ import { Toaster } from "react-hot-toast";
 export const metadata = {
   title: "VUZI",
   description: "The Wallet that your grandma approves",
+  icons: {
+    shortcut: [{ url: "/favicon.ico", sizes: "16x16", type: "image/ico" }],
+  },
 };
 
 const urbanist = Urbanist({

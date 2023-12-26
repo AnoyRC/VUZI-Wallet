@@ -1,3 +1,5 @@
+import FutureDialog from "@/components/dialogs/futureDialog";
+import HorizonDialog from "@/components/dialogs/horizonDialog";
 import IntroDialog from "@/components/dialogs/introDialog";
 import Background from "@/components/layout/main/Background";
 import Title from "@/components/layout/main/Title";
@@ -15,6 +17,8 @@ export default function LandingLayout({ children }) {
         {children}
         <Background />
         <IntroDialog />
+        <HorizonDialog />
+        <FutureDialog />
       </div>
     </>
   );
