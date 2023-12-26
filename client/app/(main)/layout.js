@@ -1,3 +1,4 @@
+import IntroDialog from "@/components/dialogs/introDialog";
 import Background from "@/components/layout/main/Background";
 import Title from "@/components/layout/main/Title";
 
@@ -13,6 +14,7 @@ export default function LandingLayout({ children }) {
         <Title />
         {children}
         <Background />
+        <IntroDialog />
       </div>
     </>
   );

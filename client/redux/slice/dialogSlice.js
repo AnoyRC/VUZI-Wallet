@@ -7,6 +7,7 @@ const dialogSlice = createSlice({
     qrCodeDialog: false,
     transferDialog: false,
     recoverDialog: false,
+    introDialog: false,
   },
 
   reducers: {
@@ -19,10 +20,17 @@ const dialogSlice = createSlice({
     handleRecoverDialog: (state, action) => {
       state.recoverDialog = !state.recoverDialog;
     },
+    handleIntroDialog: (state, action) => {
+      state.introDialog = !state.introDialog;
+    },
   },
 });
 
-export const { handleQrCodeDialog, handleTransferDialog, handleRecoverDialog } =
-  dialogSlice.actions;
+export const {
+  handleQrCodeDialog,
+  handleTransferDialog,
+  handleRecoverDialog,
+  handleIntroDialog,
+} = dialogSlice.actions;
 
 export default dialogSlice.reducer;

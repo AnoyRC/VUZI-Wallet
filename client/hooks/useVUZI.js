@@ -33,20 +33,20 @@ export default function useVUZI() {
         throw new Error("Password Hash not found");
       }
 
-      const recoveryCodesBody = {
-        recoveryArray: recoveryCodes,
-      };
+      let recoveryCodesHash = [];
 
-      const recoveryCodesResponse = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/zkops/recovery/hash`,
-        recoveryCodesBody
+      await Promise.all(
+        recoveryCodes.map(async (recoveryCode) => {
+          const recoveryCodeHashResponse = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/zkops/recovery/hash`,
+            {
+              recoveryCode: recoveryCode,
+            }
+          );
+
+          recoveryCodesHash.push(recoveryCodeHashResponse.data.recoveryHash);
+        })
       );
-
-      const recoveryCodesHash = recoveryCodesResponse.data.recoveryHashes;
-
-      if (!recoveryCodesHash) {
-        throw new Error("Recovery Codes Hash not found");
-      }
 
       const provider = new ethers.providers.JsonRpcProvider(
         victionTestnet.rpcUrl

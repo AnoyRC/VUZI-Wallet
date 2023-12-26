@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { handleQrCodeDialog } from "@/redux/slice/dialogSlice";
 import useVUZI from "@/hooks/useVUZI";
+import News from "@/components/layout/main/dashboard/wallet/News";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -43,7 +44,7 @@ export default function Page() {
 
   return (
     <div className="flex h-[94%] flex-col justify-between items-center z-10 max-w-[480px] min-w-[350px] w-screen p-4 px-5 relative">
-      <div className="flex flex-col w-full h-full pb-24 overflow-y-auto no-scrollbar">
+      <div className="flex flex-col w-full h-full pb-28 overflow-y-auto no-scrollbar">
         <h1 className="text-black/50 text-2xl mt-10">Your Balance</h1>
         <div className="flex justify-between items-center">
           <h1 className="text-black/70 text-6xl font-bold mt-3">
@@ -188,6 +189,31 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
             {walletAddress.slice(0, 6) + "..." + walletAddress.slice(-4)}
           </div>
         </div>
+        <h1 className="text-black/50 text-2xl mt-7">News</h1>
+        <News
+          title="VUZI is now available on Viction Testnet"
+          desc="A Proud Submission of Viction Horizon Startup Hackathon. VUZI is a smart contract wallet powered by ZK Snarks. Available on Viction Testnet."
+          link="https://github.com/Muziris-Labs/VUZI-Wallet"
+          color="rgba(0,73,255,1)"
+        />
+        <News
+          title="Demo Days are on the horizon!"
+          desc="On January 8th and 9th, 2024, the shortlisted teams of Viction Horizon Startup Hackathon will have the incredible opportunity to present and showcase their projects."
+          link="https://x.com/BuildOnViction/status/1739476979580301703?s=20"
+          color="rgba(255,62,102,1)"
+        />
+        <News
+          title="Building a Vibrant Web3 Communities from Zero"
+          desc="Let's revisit the panelists' wisdom, peeling back the layers to uncover actionable takeaways for your own community-building endeavors"
+          link="https://x.com/BuildOnViction/status/1739155876773233147?s=20"
+          color="rgba(33,255,69,1)"
+        />
+        <News
+          title="Transition Reminder December 31, 2023"
+          desc="To ensure a smooth transition, we kindly encourage you to switch to VICScan & Viction Wallet before December 31. After this period, Tomo Scan & Tomo Wallet will no longer be accessible."
+          link="https://x.com/BuildOnViction/status/1737788493139714082?s=20"
+          color="rgba(100,55,3,1)"
+        />
       </div>
       <div
         className=" bg-white w-screen max-w-[480px] h-[80px] min-h-[80px] flex items-start justify-center -mb-4 rounded-t-full fixed bottom-4"

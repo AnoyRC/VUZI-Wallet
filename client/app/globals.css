@@ -42,6 +42,17 @@ body {
   width: 100%;
 }
 
+.circle2 {
+  animation-delay: 1s;
+  animation: growAndFade 3s infinite ease-out;
+  background-color: #000000;
+  border-radius: 50%;
+  height: 80%;
+  opacity: 0;
+  position: absolute;
+  width: 80%;
+}
+
 @keyframes growAndFade {
   0% {
     opacity: 0.25;
