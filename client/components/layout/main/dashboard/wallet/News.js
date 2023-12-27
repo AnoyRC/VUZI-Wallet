@@ -14,13 +14,13 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
       }}
     >
       <div className="flex items-center justify-between">
-        <div className="flex items-center text-black/50 font-semibold gap-2">
+        <div className="flex items-center text-black font-semibold gap-2">
           <Image
             src="/logo.svg"
             width={20}
             height={20}
             alt="logo"
-            className="opacity-80"
+            className="opacity-100"
           />
           VUZI News
         </div>
@@ -33,7 +33,7 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
           <ArrowUpRight className="text-white" size={15} />
         </Button>
       </div>
-      <div className="flex flex-col items-center justify-between mt-2 text-black/70 text-3xl font-bold">
+      <div className="flex flex-col items-center justify-between mt-2 text-black/100 text-3xl font-bold">
         {title}
         <p className="text-sm font-normal">{desc}</p>
       </div>

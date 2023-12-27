@@ -81,7 +81,7 @@ export default function Page() {
             <div className="bg-white border-black border-[1px] absolute top-[3.7px] left-[3px] h-14 w-14 rounded-full flex items-center justify-center">
               <ArrowUpRight className="text-black/80" size={25} />
             </div>
-            <p className="ml-8 text-black/80">Transfer</p>
+            <p className="ml-8 text-black">Transfer</p>
           </Button>
           <Button
             className={
@@ -100,7 +100,7 @@ export default function Page() {
             <div className="bg-white border-black border-[1px] absolute top-[3.7px] left-[3px] h-14 w-14 rounded-full flex items-center justify-center">
               <ArrowDownLeft className="text-black/80" size={25} />
             </div>
-            <p className="ml-8 text-black/80">Deposit</p>
+            <p className="ml-8 text-black">Deposit</p>
           </Button>
           <div>
             <Button
@@ -128,13 +128,13 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
           }}
         >
           <div className="flex items-center justify-between">
-            <div className="flex items-center text-black/50 font-semibold gap-2">
+            <div className="flex items-center text-black font-semibold gap-2">
               <Image
                 src="/logo.svg"
                 width={20}
                 height={20}
                 alt="logo"
-                className="opacity-80"
+                className="opacity-100"
               />
               VUZI Domain
             </div>
@@ -161,8 +161,8 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
           }}
         >
           <div className="flex items-center justify-between">
-            <div className="flex items-center text-black/50 font-semibold gap-2">
-              <MapPin className="opacity-80" size={20} />
+            <div className="flex items-center text-black font-semibold gap-2">
+              <MapPin className="opacity-100" size={20} />
               Address
             </div>
             <div className="flex items-center gap-2">

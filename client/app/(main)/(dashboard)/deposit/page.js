@@ -57,7 +57,7 @@ export default function Page() {
           <Button
             color="white"
             className={
-              "mt-3 border-black border-[1px] h-[100px] text-5xl text-black/50 flex items-center justify-center " +
+              "mt-3 border-black border-[1px] h-[100px] text-5xl text-black flex items-center justify-center " +
               urbanist.className
             }
             style={{
@@ -72,7 +72,7 @@ export default function Page() {
           >
             {" "}
             {isLoading ? (
-              <Loader2 className="animate-spin text-black/50" size={40} />
+              <Loader2 className="animate-spin text-black" size={40} />
             ) : (
               "+ 0.5 VIC"
             )}
@@ -103,13 +103,13 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
             }}
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center text-black/50 font-semibold gap-2">
+              <div className="flex items-center text-black font-semibold gap-2">
                 <Image
                   src="/logo.svg"
                   width={20}
                   height={20}
                   alt="logo"
-                  className="opacity-80"
+                  className=""
                 />
                 VUZI Domain
               </div>
@@ -123,7 +123,7 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
                 <Copy className="text-white" size={15} />
               </Button>
             </div>
-            <div className="flex items-center justify-between mt-2 text-black/70 text-3xl font-bold">
+            <div className="flex items-center justify-between mt-2 text-black text-3xl font-bold">
               {name.length < 10 ? name : name.slice(0, 6) + "..."}@vuzi
             </div>
           </div>
@@ -136,8 +136,8 @@ url("data:image/svg+xml,%3Csvg viewBox='0 0 246 246' xmlns='http://www.w3.org/20
             }}
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center text-black/50 font-semibold gap-2">
-                <MapPin className="opacity-80" size={20} />
+              <div className="flex items-center text-black font-semibold gap-2">
+                <MapPin className="" size={20} />
                 Address
               </div>
               <div className="flex items-center gap-2">

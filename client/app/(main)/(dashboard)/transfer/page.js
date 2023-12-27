@@ -108,12 +108,12 @@ export default function Page() {
             }}
           >
             <div className="flex items-center gap-2">
-              <div className="bg-black/70 flex items-center justify-center p-3 rounded-2xl ">
+              <div className="bg-black flex items-center justify-center p-3 rounded-2xl ">
                 <Image src="/viction.svg" width={30} height={30} alt="VIC" />
               </div>
               <div className="flex flex-col justify-between">
-                <h1 className="text-black/70 text-xl font-semibold">VIC</h1>
-                <h3 className="text-black/70 text-md font-normal">
+                <h1 className="text-black text-xl font-semibold">VIC</h1>
+                <h3 className="text-black text-md font-normal">
                   1 VIC = $
                   {walletData && walletData.tomoPrice
                     ? walletData.tomoPrice.toFixed(2)
@@ -122,7 +122,7 @@ export default function Page() {
               </div>
             </div>
             <input
-              className="w-full text-4xl mt-3 outline-none bg-transparent placeholder:text-black/70"
+              className="w-full text-4xl mt-3 outline-none bg-transparent placeholder:text-black"
               placeholder="Enter amount"
               type="text"
               value={amount}
@@ -160,7 +160,7 @@ export default function Page() {
             }}
           >
             <div className="flex items-center gap-2">
-              <div className="bg-black/70 flex items-center justify-center p-3 rounded-2xl ">
+              <div className="bg-black flex items-center justify-center p-3 rounded-2xl ">
                 {type === "Unknown" && <HelpCircle size={30} />}
                 {type === "Vuzi" && (
                   <Image
@@ -174,32 +174,30 @@ export default function Page() {
               </div>
 
               <div className="flex flex-col justify-between">
-                <h1 className="text-black/70 text-xl font-semibold">Type</h1>
-                <h3 className="text-black/70 text-md font-normal">{type}</h3>
+                <h1 className="text-black text-xl font-semibold">Type</h1>
+                <h3 className="text-black text-md font-normal">{type}</h3>
               </div>
             </div>
 
             <input
-              className="w-full text-4xl mt-3 outline-none bg-transparent placeholder:text-black/80"
+              className="w-full text-4xl mt-3 outline-none bg-transparent placeholder:text-black"
               placeholder="Enter Address / domain"
               type="text"
               value={address}
               onChange={(e) => handleWalletAddress(e.target.value)}
               style={{
                 color: type === "Unknown" ? "red" : "black",
-                opacity: "0.7",
+                opacity: "",
               }}
             ></input>
-            <h3 className="text-black/80 mt-2">
-              Add @vuzi to send to a domain
-            </h3>
+            <h3 className="text-black mt-2">Add @vuzi to send to a domain</h3>
           </div>
 
           <Button
             color="white"
             size="lg"
             className={
-              "mt-5 rounded-full min-h-[56px] flex items-center justify-center text-lg w-full border-[1px] border-black font-normal text-black/90 " +
+              "mt-5 rounded-full min-h-[56px] flex items-center justify-center text-lg w-full border-[1px] border-black font-semibold text-black " +
               urbanist.className
             }
             style={{
