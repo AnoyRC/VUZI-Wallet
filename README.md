@@ -15,8 +15,8 @@ This is the raw implementation for the _[MyVuzi.com](https://myvuzi.com/)_ hacka
 
 ### Deployments
 
-- VUZI Forwarder - [0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b](https://testnet.vicscan.xyz/address/0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b)
 - VUZI Factory - [0xcbd8EF2d15E11fC65793e693d7D11e918fAfa5D6](https://testnet.vicscan.xyz/address/0xcbd8EF2d15E11fC65793e693d7D11e918fAfa5D6)
+- VUZI Forwarder - [0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b](https://testnet.vicscan.xyz/address/0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b)
 
 ## Table Of Contents
 
