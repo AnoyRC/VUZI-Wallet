@@ -29,7 +29,7 @@ export default function Step0() {
   const isLoading = useSelector((state) => state.home.isLoading);
   const name = useSelector((state) => state.home.name);
   const dispatch = useDispatch();
-  var timeout = setTimeout(function () {}, 0);
+  var timeout = null;
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
@@ -87,15 +87,21 @@ export default function Step0() {
       } else {
         inputRef.current.style.width = "5ch";
       }
-
-      inputRef.current.addEventListener("keydown", function () {
-        setIsTyping(true);
-        timeout = setTimeout(function () {
-          setIsTyping(false);
-        }, 1000);
-      });
     }
   }, [name]);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+    inputRef.current.addEventListener("keydown", function () {
+      clearTimeout(timeout);
+
+      timeout = setTimeout(function () {
+        setIsTyping(false);
+      }, 1000);
+
+      setIsTyping(true);
+    });
+  }, []);
 
   useEffect(() => {
     if (isTyping) {

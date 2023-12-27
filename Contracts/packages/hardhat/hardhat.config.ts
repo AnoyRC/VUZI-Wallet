@@ -19,6 +19,9 @@ const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.17",
     settings: {
+      metadata: {
+        bytecodeHash: "none",
+      },
       optimizer: {
         enabled: true,
         // https://docs.soliditylang.org/en/latest/using-the-compiler.html#optimizer-options
@@ -133,6 +136,7 @@ const config: HardhatUserConfig = {
     victionTestnet: {
       url: "https://rpc-testnet.viction.xyz",
       accounts: [deployerPrivateKey],
+      verifyURL: "https://scan-api-testnet.viction.xyz/api/contract/hardhat/verify",
     },
   },
   verify: {

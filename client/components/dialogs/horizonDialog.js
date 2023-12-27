@@ -70,7 +70,7 @@ export default function HorizonDialog() {
                 }}
               >
                 {" "}
-                2. Baer.eth (Marketing) <ArrowUpRight size={16} />{" "}
+                2. Baer.eth (Marketing and Ops) <ArrowUpRight size={16} />{" "}
               </span>{" "}
             </p>
           </div>

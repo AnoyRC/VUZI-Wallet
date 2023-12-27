@@ -6,26 +6,31 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-blue)
 ![Solidity](https://img.shields.io/badge/Solidity-black)
 ![ZK-SNARKS](https://img.shields.io/badge/zkSNARKS-gray)
-![Contributors](https://img.shields.io/github/contributors/Muziris-Labs/VUZI-Wallet?color=dark-green) 
-![Issues](https://img.shields.io/github/issues/Muziris-Labs/VUZI-Wallet) 
+![Contributors](https://img.shields.io/github/contributors/Muziris-Labs/VUZI-Wallet?color=dark-green)
+![Issues](https://img.shields.io/github/issues/Muziris-Labs/VUZI-Wallet)
 
 > Embedded Seedless Smart Wallets
 
 This is the raw implementation for the _[MyVuzi.com](https://myvuzi.com/)_ hackathon project at [Viction Horizon Startup Hackathon](https://horizon.viction.xyz/)
 
+### Deployments
+
+- VUZI Forwarder - [0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b](https://testnet.vicscan.xyz/address/0xf1E842Ef0774dBE7CaF7f0F95d1315fD834d2a4b)
+- VUZI Factory - [0xcbd8EF2d15E11fC65793e693d7D11e918fAfa5D6](https://testnet.vicscan.xyz/address/0xcbd8EF2d15E11fC65793e693d7D11e918fAfa5D6)
+
 ## Table Of Contents
 
-* [How It Works](#how-it-works)
-* [About the Project](#about-the-project)
-* [Project Contents](#project-contents)
-  * [VUZI Contracts](#vuzi-contracts)
-  * [VUZI ZK-Circuits](#vuzi-zk-circuits)
-  * [VUZI Client](#vuzi-client)
-  * [VUZI Server](#vuzi-server)
-* [License](#license)
-* [Authors](#authors)
+- [How It Works](#how-it-works)
+- [About the Project](#about-the-project)
+- [Project Contents](#project-contents)
+  - [VUZI Contracts](#vuzi-contracts)
+  - [VUZI ZK-Circuits](#vuzi-zk-circuits)
+  - [VUZI Client](#vuzi-client)
+  - [VUZI Server](#vuzi-server)
+- [License](#license)
+- [Authors](#authors)
 
-## How it Works 
+## How it Works
 
 ### User Authentication using ZK-SNARKS
 
@@ -45,20 +50,21 @@ Our pitch is straightforward: we simplify crypto wallet management, making it a 
 
 Here are some cool features of Vuzi:
 
-*  **Seedless Wallet**  Generate crypto wallets without a public key, Private key pair, or any 12 work passwords you must remember.
-* **onChain 2FA** Protect your wallet with our onChain 2FA module powered by Passkeys.
-* **Crosschain**  Interact with any EVM chain. You should element DRY principles to the rest of your life :smile:
-* **Web2 login** login to your web3 wallet with the comfort of your web2 accounts. 
+- **Seedless Wallet** Generate crypto wallets without a public key, Private key pair, or any 12 work passwords you must remember.
+- **onChain 2FA** Protect your wallet with our onChain 2FA module powered by Passkeys.
+- **Crosschain** Interact with any EVM chain. You should element DRY principles to the rest of your life :smile:
+- **Web2 login** login to your web3 wallet with the comfort of your web2 accounts.
 
 Of course, a simple, smart wallet will only serve some of your needs. Vuzi is a modular wallet infrastructure where you can deploy user wallets using our SDK.
 
 ## Who needs Vuzi Infra?
-* Web3 Game development: User Vuzi wallets in your game to securely store in-game assists for your users.
-* Crypto Art galleries: Do you want your users not to worry about wallets, when all they want is to buy cute crypto kitties?
-* DeSo: anyone who is building the next x alternative or friendTech, deploy wallets with custom logics faster with Vuzi. 
+
+- Web3 Game development: User Vuzi wallets in your game to securely store in-game assists for your users.
+- Crypto Art galleries: Do you want your users not to worry about wallets, when all they want is to buy cute crypto kitties?
+- DeSo: anyone who is building the next x alternative or friendTech, deploy wallets with custom logics faster with Vuzi.
 
 > [!TIP]  
-> Vuzi stands for ''Easy'' in web3 language.  
+> Vuzi stands for ''Easy'' in web3 language.
 
 # Project Contents
 
@@ -66,7 +72,7 @@ Of course, a simple, smart wallet will only serve some of your needs. Vuzi is a 
 - ZK-Circuits
 - Client
 - Server
- 
+
 # VUZI Contracts
 
 ![Solidity](https://img.shields.io/badge/Solidity-blue)
@@ -201,5 +207,5 @@ Distributed under the MIT License. See [LICENSE](https://github.com/Muziris-Labs
 
 ## Authors
 
-* **AnoyRC** - [AnoyRC](https://github.com/AnoyRC) - **Tech**
-* **Baer.Eth** - [Baer.Eth](https://github.com/0xbaer) - **Marketing and Ops**
+- **AnoyRC** - [AnoyRC](https://github.com/AnoyRC) - **Tech**
+- **Baer.Eth** - [Baer.Eth](https://github.com/0xbaer) - **Marketing and Ops**
